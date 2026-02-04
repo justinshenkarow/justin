@@ -147,7 +147,7 @@
     .hero-name {
       font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 900;
       line-height: 0.95; letter-spacing: -3px; margin-bottom: 24px;
-      background: linear-gradient(135deg, #fff 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-dark) 100%);
+      background: linear-gradient(135deg, #fff 0%, #a8e6a3 40%, #4caf50 70%, #2e7d32 100%);
       background-size: 300% 100%;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -297,7 +297,7 @@
     }
 
     .bento-bio p {
-      color: var(--text-secondary); font-size: 1rem; line-height: 1.8;
+      color: var(--text-primary); font-size: 1rem; line-height: 1.8;
       margin-bottom: 16px;
     }
     .bento-bio strong { color: var(--text-primary); }
@@ -425,6 +425,81 @@
       stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
     }
 
+    /* --- IN DEVELOPMENT SECTION --- */
+    #in-development { background: var(--bg-dark); }
+
+    .dev-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 48px;
+    }
+    .dev-card {
+      border-radius: var(--radius); overflow: hidden;
+      position: relative; min-height: 420px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s;
+    }
+    .dev-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .dev-card-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .dev-card-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%);
+    }
+    .dev-card--iyf .dev-card-bg {
+      background: linear-gradient(135deg, #1a3a2a 0%, #0d1f17 50%, #0a0a0a 100%);
+    }
+    .dev-card--klep .dev-card-bg {
+      background: linear-gradient(135deg, #1a1a3a 0%, #0d0f1f 50%, #0a0a0a 100%);
+    }
+    .dev-card-content {
+      position: relative; z-index: 1; padding: 40px;
+    }
+    .dev-card h3 {
+      font-size: 1.5rem; font-weight: 800; margin-bottom: 8px;
+    }
+    .dev-card .dev-role {
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 16px; color: #4caf50;
+    }
+    .dev-card--klep .dev-role { color: #5c8aff; }
+    .dev-card--ert .dev-card-bg {
+      background: linear-gradient(135deg, #2a1a1a 0%, #1f0d0d 50%, #0a0a0a 100%);
+    }
+    .dev-card--ert .dev-role { color: #e05555; }
+    .dev-card p {
+      color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;
+      margin-bottom: 20px; max-width: 450px;
+    }
+    .dev-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 50px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .badge--dev {
+      background: rgba(76, 175, 80, 0.15); color: #4caf50; border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+    .badge--thriller {
+      background: rgba(92, 138, 255, 0.15); color: #5c8aff; border: 1px solid rgba(92, 138, 255, 0.3);
+    }
+    .badge--fbi {
+      background: rgba(255, 193, 7, 0.15); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+    .badge--forensic {
+      background: rgba(224, 85, 85, 0.15); color: #e05555; border: 1px solid rgba(224, 85, 85, 0.3);
+    }
+    @media (max-width: 1024px) {
+      .dev-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 700px) {
+      .dev-grid { grid-template-columns: 1fr; }
+      .dev-card { min-height: 350px; }
+    }
+
     /* --- STUDIOS SECTION --- */
     #studios { background: var(--bg-dark); }
 
@@ -436,6 +511,7 @@
       border-radius: var(--radius); overflow: hidden;
       position: relative; min-height: 500px;
       display: flex; flex-direction: column; justify-content: flex-end;
+      text-decoration: none; color: inherit; cursor: pointer;
       transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s;
     }
     .studio-card:hover {
@@ -705,6 +781,7 @@
         <li><a href="#about" onclick="closeMenu()">About</a></li>
         <li><a href="#projects" onclick="closeMenu()">Work</a></li>
         <li><a href="#studios" onclick="closeMenu()">Studios</a></li>
+        <li><a href="#in-development" onclick="closeMenu()">In Development</a></li>
         <li><a href="#content" onclick="closeMenu()">Content</a></li>
         <li><a href="#connect" onclick="closeMenu()">Connect</a></li>
       </ul>
@@ -719,7 +796,6 @@
       <img src="https://media.themoviedb.org/t/p/w780/uxy54aFyWM1Bow5P9EAY4iCyMbu.jpg" alt="" loading="eager">
     </div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Actor &bull; Producer &bull; Studio Co-Founder</span>
       <h1 class="hero-name">Justin<br>Shenkarow</h1>
       <p class="hero-roles">
         Voice Artist<span class="sep">/</span>Actor<span class="sep">/</span>Producer<span class="sep">/</span>Creator
@@ -784,6 +860,9 @@
           <p>
             In the voice booth, Justin has contributed to <strong>Ice Age</strong>, <strong>Bee Movie</strong>, and <strong>Shrek the Third</strong>, and currently voices <strong>Rhino</strong> on Marvel's <strong>Spidey and His Amazing Friends</strong>. A <strong>Stanford University</strong> graduate, <strong>SAG-AFTRA board member</strong>, and co-founder of <strong>TZero Studios</strong>, Justin continues to push creative boundaries.
           </p>
+          <p>
+            <strong>Stanford University</strong> graduate with an <strong>MBA</strong>.
+          </p>
           <div class="bento-chips">
             <span class="chip chip--gold">Hey Arnold!</span>
             <span class="chip chip--gold">Picket Fences</span>
@@ -845,7 +924,7 @@
         <div class="project-card" data-category="voice">
           <div class="card-glow"></div>
           <div class="card-poster">
-            <img src="https://image.tmdb.org/t/p/w500/lmoYPc7pXjliXWMLqwN6tuJQc8b.jpg" alt="Hey Arnold!" loading="lazy">
+            <img src="hey-arnold-pic.avif" alt="Harold Berman - Hey Arnold!" loading="lazy">
             <div class="card-poster-overlay"></div>
             <span class="card-category-badge">Voice Acting</span>
           </div>
@@ -863,7 +942,7 @@
         <div class="project-card" data-category="voice">
           <div class="card-glow"></div>
           <div class="card-poster">
-            <img src="https://media.themoviedb.org/t/p/w500/etO5jDS5WgR4Y1lTyXhQcilJ6u2.jpg" alt="Spidey and His Amazing Friends" loading="lazy">
+            <img src="rhino-spidey.jpg" alt="Rhino - Spidey and His Amazing Friends" loading="lazy">
             <div class="card-poster-overlay"></div>
             <span class="card-category-badge">Voice Acting</span>
           </div>
@@ -1033,7 +1112,7 @@
 
       <div class="studios-grid">
         <!-- TZero Studios -->
-        <div class="studio-card reveal">
+        <a href="https://www.tzerostudios.com" target="_blank" rel="noopener" class="studio-card reveal">
           <div class="studio-card-bg">
             <img src="https://images.squarespace-cdn.com/content/v1/6254bb15f30def7d1a589d99/e3c2f49f-6702-4cfa-a67e-5bcf16872430/Untitled_Artwork.jpg" alt="" loading="lazy">
           </div>
@@ -1046,10 +1125,10 @@
               <span class="studio-badge badge--blue">Animation Studio</span>
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- Bronx Buds -->
-        <div class="studio-card reveal">
+        <a href="https://www.bronxbuds.com" target="_blank" rel="noopener" class="studio-card reveal">
           <div class="studio-card-bg">
             <img src="https://images.squarespace-cdn.com/content/v1/6254bb15f30def7d1a589d99/4d10d46b-017d-4132-9d6a-ee3136cd69c9/Untitled_Artwork+2.jpg" alt="" loading="lazy">
           </div>
@@ -1060,6 +1139,64 @@
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <span class="studio-badge badge--emmy">Emmy-Nominated</span>
               <span class="studio-badge badge--blue">Animated Series</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IN DEVELOPMENT -->
+  <section id="in-development">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Coming Soon</p>
+        <h2 class="section-title">In Development</h2>
+        <p class="section-subtitle">New projects in the pipeline &mdash; from a groundbreaking comedy pilot to high-stakes FBI thrillers.</p>
+      </div>
+
+      <div class="dev-grid">
+        <!-- It's Your Fault -->
+        <div class="dev-card dev-card--iyf reveal">
+          <div class="dev-card-bg"></div>
+          <div class="dev-card-content">
+            <h3>It's Your Fault</h3>
+            <div class="dev-role">Creator / Star</div>
+            <p>A comedy pilot where reality TV meets animation. A voice-over actor whose on-camera career peaked at age 12 has his world turned upside down when his mother sells her house to become his reality TV momager. Think Schitt's Creek meets The Kardashians, raised by Who Framed Roger Rabbit.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="dev-badge badge--dev">Pilot</span>
+              <span class="dev-badge badge--emmy">Comedy</span>
+              <span class="dev-badge badge--blue">Live-Action / Animation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kleptocracy -->
+        <div class="dev-card dev-card--klep reveal">
+          <div class="dev-card-bg"></div>
+          <div class="dev-card-content">
+            <h3>Kleptocracy</h3>
+            <div class="dev-role">Producer</div>
+            <p>Inspired by the true story of FBI Special Agent Debra LaPrevotte. Three generations of women lead an elite FBI unit taking down international corrupt leaders who have stolen billions from their citizens. Combines the intensity of The Night Agent with the intrigue of Jack Ryan.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="dev-badge badge--thriller">Thriller</span>
+              <span class="dev-badge badge--fbi">FBI / True Story</span>
+              <span class="dev-badge badge--blue">Series</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ERT -->
+        <div class="dev-card dev-card--ert reveal">
+          <div class="dev-card-bg"></div>
+          <div class="dev-card-content">
+            <h3>ERT</h3>
+            <div class="dev-role">Producer</div>
+            <p>CSI meets Columbo on a global scale. Based on the true story of FBI agents Tom and Jean O'Connor, a married couple who led the Bureau's Evidence Response Team for 25 years &mdash; investigating terror attacks, mass casualty events, and complex crime scenes around the world.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="dev-badge badge--forensic">Crime Procedural</span>
+              <span class="dev-badge badge--fbi">FBI / True Story</span>
+              <span class="dev-badge badge--blue">Series</span>
             </div>
           </div>
         </div>
