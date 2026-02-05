@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Izzy: The Most Hated (And Secretly Best) Olympic Mascot | Justin Shenkarow</title>
+  <meta name="description" content="Voice actor Justin Shenkarow voiced Izzy, the infamous 1996 Atlanta Olympics mascot. Discover why the 'worst' mascot was actually ahead of its time.">
+  <meta property="og:title" content="I Voiced The Most Hated Olympic Mascot Ever - And He Was Actually Genius">
+  <meta property="og:description" content="Izzy was the first CGI Olympic mascot. The critics hated him. Kids loved him. 30 years later, it's time to bring him back.">
+  <meta property="og:image" content="https://www.justinshenkarow.com/izzy-share.jpg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --izzy-blue: #0080FF;
+      --izzy-light: #33A3FF;
+      --gold: #FFD700;
+      --bg-dark: #0a0a0a;
+      --text: #f0f0f0;
+      --text-muted: #999;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px 60px;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(0,128,255,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(255,215,0,0.1) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(0,0,0,0.3) 0%, var(--bg-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%230080FF" opacity="0.1"/></svg>') repeat;
+      background-size: 50px 50px;
+      opacity: 0.3;
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(0,128,255,0.15);
+      border: 2px solid var(--izzy-blue);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--izzy-light);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #fff 0%, var(--izzy-light) 50%, var(--izzy-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+
+    .hero-quote {
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 40px;
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+      background: rgba(255,215,0,0.05);
+      border-radius: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 2px solid;
+    }
+
+    .btn-primary {
+      background: var(--izzy-blue);
+      color: white;
+      border-color: var(--izzy-blue);
+    }
+
+    .btn-primary:hover {
+      background: var(--izzy-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,128,255,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--izzy-blue);
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .section-intro {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    /* Fun Facts Grid */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .fact-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .fact-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--izzy-blue);
+      box-shadow: 0 20px 60px rgba(0,128,255,0.2);
+    }
+
+    .fact-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .fact-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--izzy-light);
+    }
+
+    .fact-text {
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Comparison Section */
+    .comparison {
+      background: linear-gradient(180deg, var(--bg-dark) 0%, #0d0d1a 50%, var(--bg-dark) 100%);
+    }
+
+    .vs-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    .mascot-card {
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .mascot-year {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .mascot-name {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .mascot-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .mascot-image {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 24px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .vs-badge {
+      background: var(--gold);
+      color: var(--bg-dark);
+      font-size: 2rem;
+      font-weight: 900;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 40px rgba(255,215,0,0.4);
+    }
+
+    /* Verdict Section */
+    .verdict {
+      background: linear-gradient(135deg, rgba(0,128,255,0.1) 0%, rgba(255,215,0,0.05) 100%);
+      border-radius: 20px;
+      padding: 50px;
+      margin-top: 60px;
+      border: 2px solid rgba(0,128,255,0.3);
+    }
+
+    .verdict h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--izzy-light);
+    }
+
+    .verdict-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    /* Campaign Section */
+    .campaign {
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(0,128,255,0.1) 0%, transparent 70%),
+        var(--bg-dark);
+    }
+
+    .campaign-box {
+      max-width: 700px;
+      margin: 60px auto 0;
+      background: rgba(255,255,255,0.03);
+      border: 3px solid var(--izzy-blue);
+      border-radius: 24px;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .campaign-box::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: conic-gradient(from 0deg, var(--izzy-blue), var(--gold), var(--izzy-blue));
+      border-radius: 24px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .campaign-box:hover::before {
+      opacity: 0.2;
+    }
+
+    .campaign-title {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--izzy-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .campaign-text {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* Social Section */
+    .social-section {
+      background: #0d0d0d;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .social-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .social-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--izzy-blue);
+      box-shadow: 0 20px 60px rgba(0,128,255,0.3);
+    }
+
+    .social-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .social-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .social-handle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Video Embed Section */
+    .video-section {
+      background: var(--bg-dark);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .video-placeholder {
+      background: rgba(255,255,255,0.03);
+      border: 2px dashed rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 60px 20px;
+      text-align: center;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-placeholder-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.3;
+    }
+
+    .video-placeholder-text {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    footer a {
+      color: var(--izzy-blue);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--izzy-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .vs-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .vs-badge {
+        transform: rotate(90deg);
+      }
+
+      .campaign-box {
+        padding: 40px 24px;
+      }
+
+      .verdict {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🏅 Atlanta 1996 Olympics</div>
+      <h1>I Voiced The Most Hated<br>(And Secretly Best)<br>Olympic Mascot Ever</h1>
+      <p class="hero-subtitle">Meet Izzy: The world's first CGI Olympic mascot.<br>Critics destroyed him. Kids loved him. History proved him right.</p>
+      <div class="hero-quote">
+        "In art, you're a failure when you're ignored."<br>
+        — John Ryan, Creator of Izzy
+      </div>
+      <div class="cta-buttons">
+        <a href="#campaign" class="btn btn-primary">🔥 Join the Campaign</a>
+        <a href="https://www.justinshenkarow.com" class="btn btn-secondary">About Justin</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN FACTS -->
+  <section>
+    <div class="container">
+      <p class="section-label">The Legend</p>
+      <h2>Why Izzy Was Actually Genius</h2>
+      <p class="section-intro">
+        In 1996, the world wasn't ready for a computer-generated Olympic mascot. But Izzy was ahead of his time—and the numbers prove it.
+      </p>
+
+      <div class="facts-grid">
+        <div class="fact-card">
+          <div class="fact-icon">💻</div>
+          <div class="fact-title">First CGI Mascot</div>
+          <p class="fact-text">Izzy was the world's FIRST computer-generated Olympic mascot in history. He paved the way for every digital mascot that came after.</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">💰</div>
+          <div class="fact-title">$100 Million</div>
+          <p class="fact-text">Despite the hate, Izzy merchandise generated an estimated $100 million in royalties. Kids loved him—and bought everything.</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">📺</div>
+          <div class="fact-title">TV Special</div>
+          <p class="fact-text">"Izzy's Quest For Olympic Gold" aired on Turner Network Television—a 30-minute animated special produced by Film Roman (Garfield, Simpsons).</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🎮</div>
+          <div class="fact-title">Video Game Star</div>
+          <p class="fact-text">Izzy starred in his own video game "Izzy's Quest for the Olympic Rings" on Super NES and Sega Genesis in 1995.</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🥣</div>
+          <div class="fact-title">Cereal Box Fame</div>
+          <p class="fact-text">Izzy appeared on Lucky Charms cereal boxes and was sold at Toys "R" Us stores across Atlanta. He was EVERYWHERE.</p>
+        </div>
+
+        <div class="fact-card">
+          <div class="fact-icon">🔵</div>
+          <div class="fact-title">"Whatizit?"</div>
+          <p class="fact-text">Originally called "Whatizit" (What is it?), kids in Atlanta renamed him "Izzy" in a nationwide contest. Over 85,000 kids wrote stories about him.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="comparison">
+    <div class="container">
+      <p class="section-label">Then vs. Now</p>
+      <h2>How Does Izzy Stack Up?</h2>
+      <p class="section-intro">
+        The 2026 Winter Olympics are starting THIS FRIDAY in Milan. Let's compare the mascots—30 years apart.
+      </p>
+
+      <div class="vs-container">
+        <!-- Izzy 1996 -->
+        <div class="mascot-card">
+          <div class="mascot-year">1996 • Atlanta</div>
+          <div class="mascot-image">🔵</div>
+          <div class="mascot-name">IZZY</div>
+          <p class="mascot-desc">
+            Blue CGI blob. Morphing abilities. Stars in his eyes. Originally named "Whatizit" because nobody knew what he was.
+          </p>
+          <div style="margin-top: 20px;">
+            <strong style="color: #FFD700;">Voice:</strong> Justin Shenkarow<br>
+            <strong style="color: #0080FF;">Verdict:</strong> Polarizing genius
+          </div>
+        </div>
+
+        <!-- VS Badge -->
+        <div class="vs-badge">VS</div>
+
+        <!-- 2026 Mascots -->
+        <div class="mascot-card">
+          <div class="mascot-year">2026 • Milan</div>
+          <div class="mascot-image">🦡</div>
+          <div class="mascot-name">TINA & MILO</div>
+          <p class="mascot-desc">
+            Two stoat siblings (weasels). Tina has white fur. Milo has brown fur and was born without a leg. Called the "first Gen Z mascots."
+          </p>
+          <div style="margin-top: 20px;">
+            <strong style="color: #FFD700;">Designers:</strong> Italian students<br>
+            <strong style="color: #0080FF;">Verdict:</strong> Adorable & inclusive
+          </div>
+        </div>
+      </div>
+
+      <!-- Verdict Box -->
+      <div class="verdict">
+        <h3>🏆 The Verdict</h3>
+        <p class="verdict-text">
+          Izzy was 30 years ahead of his time. He was the FIRST CGI mascot, paving the way for every digital character that followed. Yes, he was weird. Yes, critics hated him. But kids loved him, he made $100 million, and he's more iconic today than any mascot since. Tina & Milo are cute, but Izzy? <strong>Izzy was LEGENDARY.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGN -->
+  <section class="campaign" id="campaign">
+    <div class="container">
+      <p class="section-label">Movement</p>
+      <h2>Bring Back Izzy</h2>
+      <p class="section-intro">
+        It's time to give Izzy the recognition he deserves. The 2028 Olympics are in Los Angeles. Let's bring the OG digital mascot home.
+      </p>
+
+      <div class="campaign-box">
+        <div class="campaign-title">#BringBackIzzy</div>
+        <p class="campaign-text">
+          Izzy wasn't just a mascot—he was a pioneer. The first computer-generated Olympic character. A symbol of innovation, creativity, and taking risks. 30 years later, it's time to celebrate what he represented: breaking the rules and doing something nobody had ever seen before.
+        </p>
+        <div class="cta-buttons">
+          <a href="https://www.instagram.com/justinshenkarow/" target="_blank" class="btn btn-primary">Follow The Movement</a>
+          <a href="https://www.tiktok.com/@justinshenkarow" target="_blank" class="btn btn-secondary">Watch on TikTok</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="video-section">
+    <div class="container">
+      <p class="section-label">Content</p>
+      <h2>Izzy Content Coming Soon</h2>
+      <p class="section-intro">
+        Follow Justin on TikTok and Instagram for exclusive Izzy content, behind-the-scenes stories, and voice acting videos as the 2026 Olympics begin.
+      </p>
+
+      <div class="video-grid">
+        <div class="video-placeholder">
+          <div class="video-placeholder-icon">📹</div>
+          <p class="video-placeholder-text">Izzy voice videos<br>coming this week</p>
+        </div>
+        <div class="video-placeholder">
+          <div class="video-placeholder-icon">🎤</div>
+          <p class="video-placeholder-text">Behind-the-scenes<br>1996 Olympics stories</p>
+        </div>
+        <div class="video-placeholder">
+          <div class="video-placeholder-icon">🔥</div>
+          <p class="video-placeholder-text">Why Izzy was<br>actually genius</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="social-section">
+    <div class="container">
+      <p class="section-label">Connect</p>
+      <h2>Follow Justin</h2>
+      <p class="section-intro">
+        Voice actor, producer, and the man behind the most controversial Olympic mascot of all time.
+      </p>
+
+      <div class="social-grid">
+        <a href="https://www.instagram.com/justinshenkarow/" target="_blank" class="social-card">
+          <div class="social-icon">📸</div>
+          <div class="social-name">Instagram</div>
+          <div class="social-handle">@justinshenkarow</div>
+        </a>
+
+        <a href="https://www.tiktok.com/@justinshenkarow" target="_blank" class="social-card">
+          <div class="social-icon">🎵</div>
+          <div class="social-name">TikTok</div>
+          <div class="social-handle">@justinshenkarow</div>
+        </a>
+
+        <a href="https://www.imdb.com/name/nm0791561/" target="_blank" class="social-card">
+          <div class="social-icon">🎬</div>
+          <div class="social-name">IMDb</div>
+          <div class="social-handle">View Credits</div>
+        </a>
+
+        <a href="https://www.justinshenkarow.com" class="social-card">
+          <div class="social-icon">🌐</div>
+          <div class="social-name">Official Site</div>
+          <div class="social-handle">justinshenkarow.com</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Izzy • 1996 Atlanta Summer Olympics • Voiced by <a href="https://www.justinshenkarow.com">Justin Shenkarow</a><br>
+      <span style="opacity: 0.5; font-size: 0.85rem;">© 2026 • #BringBackIzzy</span>
+    </p>
+  </footer>
+
+</body>
+</html>
