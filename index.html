@@ -760,6 +760,43 @@
         transition-duration: 0.001ms !important;
       }
     }
+    /* Kit email form overrides */
+    .formkit-form {
+      background: transparent !important;
+    }
+    .formkit-form input[type="email"],
+    .formkit-form input[type="text"],
+    .formkit-form input {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 2px solid rgba(255,255,255,0.3) !important;
+      border-radius: 8px !important;
+      padding: 12px 16px !important;
+      font-size: 1rem !important;
+    }
+    .formkit-form input::placeholder {
+      color: #666666 !important;
+      opacity: 1 !important;
+    }
+    .formkit-form label,
+    .formkit-form .formkit-field label {
+      color: #ffffff !important;
+      font-weight: 600 !important;
+    }
+    .formkit-form button,
+    .formkit-form .formkit-submit button {
+      background: var(--accent, #c8a97e) !important;
+      color: #000 !important;
+      font-weight: 700 !important;
+      border-radius: 8px !important;
+      padding: 12px 24px !important;
+      font-size: 1rem !important;
+    }
+    .formkit-form p,
+    .formkit-form span,
+    .formkit-form .formkit-guarantee {
+      color: rgba(255,255,255,0.7) !important;
+    }
   </style>
 </head>
 <body>
@@ -784,6 +821,7 @@
         <li><a href="#in-development" onclick="closeMenu()">In Development</a></li>
         <li><a href="#content" onclick="closeMenu()">Content</a></li>
         <li><a href="#connect" onclick="closeMenu()">Connect</a></li>
+        <li><a href="izzy.html" onclick="closeMenu()">Olympics</a></li>
       </ul>
     </div>
   </nav>
@@ -852,24 +890,32 @@
         <!-- Bio -->
         <div class="bento-card span-3 bento-bio reveal">
           <p>
-            <strong>Justin Shenkarow</strong> has built a career spanning decades in Hollywood, earning recognition across live-action television, feature film, voice acting, and production. Best known for voicing <strong>Harold Berman</strong> on Nickelodeon's beloved <strong>Hey Arnold!</strong>, Justin has left his mark on some of the most iconic entertainment of the past three decades.
+            <strong>Justin Shenkarow</strong> has spent over three decades building a versatile career across voice overs, on-camera acting, and production, from defining '90s animation to Emmy-winning drama, to pioneering sports entertainment for young audiences.
           </p>
           <p>
-            On screen, he starred as <strong>Matthew Brock</strong> on CBS's Emmy-winning <strong>Picket Fences</strong> and as <strong>Simon Holmes</strong> on NBC's cult classic <strong>Eerie, Indiana</strong>. His film credits include <strong>Avatar</strong>, <strong>Good Will Hunting</strong>, and <strong>Silver Linings Playbook</strong>.
+            As a young actor, Justin became the voice of a generation, bringing to life <strong>Harold Berman</strong> on Nickelodeon's <strong>Hey Arnold!</strong>, alongside memorable roles in <strong>Recess</strong>, <strong>Lloyd in Space</strong>, and <strong>Life with Louie</strong>. He even voiced <strong>Izzy</strong>, the official (and slightly chaotic) mascot of the <strong>1996 Atlanta Olympics</strong>.
           </p>
           <p>
-            In the voice booth, Justin has contributed to <strong>Ice Age</strong>, <strong>Bee Movie</strong>, and <strong>Shrek the Third</strong>, and currently voices <strong>Rhino</strong> on Marvel's <strong>Spidey and His Amazing Friends</strong>. A <strong>Stanford University</strong> graduate, <strong>SAG-AFTRA board member</strong>, and co-founder of <strong>TZero Studios</strong>, Justin continues to push creative boundaries.
+            On screen, he earned Emmy and Golden Globe awards as part of the Best Ensemble Cast on CBS's groundbreaking <strong>Picket Fences</strong> as <strong>Matthew Brock</strong>, and starred as the conspiracy-hunting <strong>Simon Holmes</strong> on NBC's cult classic <strong>Eerie, Indiana</strong>. He transitioned into adult acting across film and television, including <strong>Z Nation</strong> and many others.
           </p>
           <p>
-            <strong>Stanford University</strong> graduate with an <strong>MBA</strong>.
+            In the voice booth, Justin's range spans everything from <strong>Avatar</strong>, <strong>Good Will Hunting</strong>, and <strong>Silver Linings Playbook</strong> to <strong>Ice Age</strong>, <strong>Bee Movie</strong>, and <strong>Shrek the Third</strong>. Currently, he voices the incredible <strong>Rhino</strong> on Marvel's <strong>Spidey and His Amazing Friends</strong>.
+          </p>
+          <p>
+            A <strong>Stanford</strong> graduate with an <strong>MBA</strong>, and <strong>Chinese Government Scholar</strong> who studied in Shanghai, Justin has always mixed creativity with strategy. He served on the <strong>SAG-AFTRA Board</strong> and as <strong>National Chairman of the Young Performers Committee</strong>, advocating for every child actor in the industry.
+          </p>
+          <p>
+            As a producer and creator, Justin develops and options projects spanning true crime and stories inspired by real events. He's co-founder of <strong>Tzero Studios</strong> and co-creator of <strong>Bronx Buds</strong>, the Emmy Award-winning animated series produced with <strong>New York Yankees Entertainment</strong> where he continues to create amazing content for the next generation of kids.
           </p>
           <div class="bento-chips">
             <span class="chip chip--gold">Hey Arnold!</span>
             <span class="chip chip--gold">Picket Fences</span>
             <span class="chip chip--gold">Eerie, Indiana</span>
+            <span class="chip chip--gold">Izzy - 1996 Olympics</span>
             <span class="chip">Stanford Grad</span>
             <span class="chip">SAG-AFTRA Board</span>
             <span class="chip">Studio Co-Founder</span>
+            <span class="chip">Bronx Buds</span>
           </div>
         </div>
 
@@ -1326,8 +1372,13 @@
         <div class="pulse-ring" aria-hidden="true"></div>
         <h3>Booking & Inquiries</h3>
         <p>Interested in voice acting, appearances, collaborations, or production? Let's connect.</p>
-        <a href="mailto:contact@justinshenkarow.com" class="btn btn-primary magnetic-btn">Get In Touch</a>
+        <a href="mailto:justinfilm@gmail.com" class="btn btn-primary magnetic-btn">Get In Touch</a>
       </div>
+    </div>
+    <div style="margin-top:3rem;text-align:center;">
+      <h3 style="color:#fff;margin-bottom:1rem;">Stay in the Loop</h3>
+      <p style="color:rgba(255,255,255,0.7);margin-bottom:1.5rem;">Sign up for updates on new projects, appearances, and more.</p>
+      <script async data-uid="3a6a08f3f2" src="https://justin-shenkarow.kit.com/3a6a08f3f2/index.js"></script>
     </div>
   </section>
 
