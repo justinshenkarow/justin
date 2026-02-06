@@ -1136,7 +1136,6 @@
         <button class="filter-btn active" onclick="filterCards('all')">All</button>
         <button class="filter-btn" onclick="filterCards('voice')">Voice Acting</button>
         <button class="filter-btn" onclick="filterCards('screen')">TV & Film</button>
-        <button class="filter-btn" onclick="filterCards('production')">Production</button>
         <button class="filter-btn" onclick="filterCards('current')">Current</button>
       </div>
 
@@ -1229,45 +1228,6 @@
             <div class="card-tags">
               <span class="card-tag">NBC</span>
               <span class="card-tag">Cult Classic</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Major Credits -->
-        <div class="project-card" data-category="screen">
-          <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 2l4 4H4z"/><path d="M8 2l4 4H8z"/><path d="M12 2l4 4h-4z"/><path d="M16 2l4 4h-4z"/><rect x="2" y="6" width="20" height="16" rx="2"/></svg>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Film & Television</span>
-            <h3 class="card-title">Major Film & TV Credits</h3>
-            <p class="card-desc">Appeared in landmark productions including Avatar, Good Will Hunting, Silver Linings Playbook, Home Improvement, and Z Nation.</p>
-            <div class="card-tags">
-              <span class="card-tag">Avatar</span>
-              <span class="card-tag">Good Will Hunting</span>
-              <span class="card-tag">Silver Linings Playbook</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Production -->
-        <div class="project-card" data-category="production">
-          <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Production</span>
-            <h3 class="card-title">Shake That Fro Productions</h3>
-            <p class="card-desc">Founded his own production company, producing award-winning short films and developing original content across multiple formats.</p>
-            <div class="card-tags">
-              <span class="card-tag">Producer</span>
-              <span class="card-tag">Award-Winning</span>
             </div>
           </div>
         </div>
@@ -1376,7 +1336,9 @@
       <div class="dev-grid">
         <!-- It's Your Fault -->
         <div class="dev-card dev-card--iyf reveal">
-          <div class="dev-card-bg"></div>
+          <div class="dev-card-bg">
+            <img src="its-your-fault.jpg" alt="It's Your Fault" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+          </div>
           <div class="dev-card-content">
             <h3>It's Your Fault</h3>
             <div class="dev-role">Creator / Star</div>
@@ -1415,6 +1377,22 @@
               <span class="dev-badge badge--forensic">Crime Procedural</span>
               <span class="dev-badge badge--fbi">FBI / True Story</span>
               <span class="dev-badge badge--blue">Series</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- On The Rocks -->
+        <div class="dev-card dev-card--otr reveal">
+          <div class="dev-card-bg">
+            <img src="on-the-rocks.png" alt="On The Rocks" style="width:100%;height:100%;object-fit:cover;opacity:0.6;">
+          </div>
+          <div class="dev-card-content">
+            <h3>On The Rocks</h3>
+            <div class="dev-role" style="color:#d4a843;">Writer / Director</div>
+            <p>On the Rocks follows two best friends stumbling through Kentucky's Bourbon Trail—ostensibly to celebrate craft spirits and Southern tradition, but really just avoiding their crumbling lives back home. Between distillery tours, questionable life advice, and way too many tastings, they discover that the path to clarity might be found at the bottom of a glass... or maybe just in each other's company.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="dev-badge" style="background:rgba(212,168,67,0.15);color:#d4a843;border:1px solid rgba(212,168,67,0.3);">Film</span>
+              <span class="dev-badge badge--dev">In Development</span>
             </div>
           </div>
         </div>
