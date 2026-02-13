@@ -714,12 +714,10 @@
       submitBtn.textContent = 'SUBSCRIBING...';
 
       try {
-        // Send to Google Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycbz7RG2Q61m4UiDZYEpW_Iiz0ZsHLH_SgQOifJ9JOGf7lMrd4rWp8pv_cGGYgSNBiItE/exec', {
+        // Send to Google Apps Script (no-cors mode, can't read response)
+        await fetch('https://script.google.com/macros/s/AKfycbz7RG2Q61m4UiDZYEpW_Iiz0ZsHLH_SgQOifJ9JOGf7lMrd4rWp8pv_cGGYgSNBiItE/exec', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          mode: 'no-cors',
           body: JSON.stringify({
             email: email,
             name: 'Bully Fan',
@@ -727,16 +725,9 @@
           })
         });
 
-        const data = await response.json();
-
-        if (data.result === 'success') {
-          document.getElementById('newsletterForm').style.display = 'none';
-          successMsg.classList.add('show');
-        } else {
-          alert('ALREADY SUBSCRIBED OR ERROR! TRY AGAIN!');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'SUBSCRIBE!';
-        }
+        // With no-cors we can't read the response, so assume success
+        document.getElementById('newsletterForm').style.display = 'none';
+        successMsg.classList.add('show');
 
       } catch (error) {
         console.error('Subscription error:', error);
