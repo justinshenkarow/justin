@@ -34,7 +34,7 @@
     "sameAs": [
       "https://www.imdb.com/name/nm0791561/",
       "https://www.instagram.com/justinshenkarow/",
-      "https://www.tiktok.com/@justinshenkarow",
+      "https://www.tiktok.com/@justinshenkarowofficial",
       "https://www.cameo.com/justinshenkarow",
       "https://www.tzerostudios.com",
       "https://www.bronxbuds.com"
@@ -143,7 +143,20 @@
     .film-grain {
       position: fixed; inset: 0;
       pointer-events: none; z-index: 9999;
-      opacity: 0.03; width: 100%; height: 100%;
+      opacity: 0.04; width: 100%; height: 100%;
+      animation: grain 0.5s steps(10) infinite;
+    }
+    @keyframes grain {
+      0%, 100% { transform: translate(0, 0); }
+      10% { transform: translate(-5%, -10%); }
+      20% { transform: translate(-15%, 5%); }
+      30% { transform: translate(7%, -25%); }
+      40% { transform: translate(-5%, 25%); }
+      50% { transform: translate(-15%, 10%); }
+      60% { transform: translate(15%, 0%); }
+      70% { transform: translate(0%, 15%); }
+      80% { transform: translate(3%, 20%); }
+      90% { transform: translate(-10%, 10%); }
     }
 
     /* --- NAV --- */
@@ -186,124 +199,194 @@
     /* --- HERO --- */
     #hero {
       min-height: 100vh; position: relative; overflow: hidden;
-      display: flex; align-items: center;
-      background: #000;
-    }
-    #heroCanvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      z-index: 1; pointer-events: none;
-    }
-    .hero-bg-gradient {
-      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
       background:
-        radial-gradient(ellipse at 30% 50%, rgba(212,168,67,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 30%, rgba(212,168,67,0.04) 0%, transparent 50%),
-        linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(10,10,10,0.8) 80%, var(--bg-dark) 100%);
+        radial-gradient(ellipse at 30% 50%, rgba(212,168,67,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(212,168,67,0.1) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(0,0,0,0.3) 0%, #0a0a0a 100%);
     }
-    .hero-headshot-bg {
-      position: absolute; top: 0; right: -5%; width: 55%; height: 100%;
-      z-index: 1; overflow: hidden;
+
+    /* Matrix rain container */
+    .matrix-rain {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 2;
     }
-    .hero-headshot-bg img {
-      width: 100%; height: 100%; object-fit: cover;
-      object-position: center 20%;
-      filter: grayscale(30%) contrast(1.1);
-      opacity: 0.35;
-      mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    .matrix-column {
+      position: absolute; top: -100%;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      color: rgba(212,168,67,0.3);
+      text-shadow: 0 0 8px rgba(212,168,67,0.5);
+      animation: matrix-fall linear infinite;
+      white-space: nowrap;
     }
+    @keyframes matrix-fall {
+      to { top: 100%; }
+    }
+
+    /* Cinematic spotlight sweep */
+    .hero-spotlight {
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(212,168,67,0.1) 45%,
+        rgba(212,168,67,0.2) 50%,
+        rgba(212,168,67,0.1) 55%,
+        transparent 100%);
+      animation: spotlight-sweep 8s ease-in-out infinite;
+      pointer-events: none; z-index: 3;
+    }
+    @keyframes spotlight-sweep {
+      0%, 100% { transform: translateX(-100%) rotate(45deg); }
+      50% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    #heroCanvas {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 4;
+    }
+
     .hero-content {
       position: relative; z-index: 10;
-      max-width: 1300px; margin: 0 auto; padding: 120px 32px 60px;
-      width: 100%;
+      text-align: center;
+      max-width: 1200px; padding: 40px 20px;
     }
-    .hero-eyebrow {
+
+    .hero-badge {
       display: inline-block;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 4px;
-      text-transform: uppercase; color: var(--gold);
-      border: 1px solid rgba(212,168,67,0.3); padding: 6px 16px;
-      border-radius: 50px; margin-bottom: 28px;
-      opacity: 0; transform: translateY(20px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+      padding: 8px 20px;
+      background: rgba(212,168,67,0.15);
+      border: 2px solid var(--gold);
+      border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
+      opacity: 0; animation: fadeInUp 1s ease-out 0.3s forwards;
     }
-    body.loaded .hero-eyebrow { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .hero-name {
-      font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 900;
-      line-height: 0.95; letter-spacing: -3px; margin-bottom: 24px;
-      background: linear-gradient(135deg, #fff 0%, #a8e6a3 40%, #4caf50 70%, #2e7d32 100%);
-      background-size: 300% 100%;
+      font-size: clamp(3rem, 10vw, 7rem); font-weight: 900;
+      line-height: 1.1; margin-bottom: 30px;
+      background: linear-gradient(135deg, #fff 0%, #d4a843 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: shimmerName 8s ease-in-out infinite;
-      opacity: 0; transform: translateY(40px);
-      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+      position: relative;
+      opacity: 0; animation: textReveal 1.5s ease-out 0.6s forwards;
     }
-    body.loaded .hero-name { opacity: 1; transform: translateY(0); }
-    @keyframes shimmerName {
-      0%, 100% { background-position: 100% 50%; }
-      50% { background-position: 0% 50%; }
+    .hero-name::after {
+      content: 'Justin Shenkarow';
+      position: absolute; left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #fff 0%, #d4a843 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(20px); opacity: 0.5;
+      animation: glow 3s ease-in-out infinite;
+      z-index: -1;
     }
 
-    .hero-roles {
-      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-secondary);
-      font-weight: 300; letter-spacing: 3px; text-transform: uppercase;
-      margin-bottom: 40px; max-width: 600px;
-      opacity: 0; transform: translateY(20px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+    @keyframes textReveal {
+      0% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+      100% { opacity: 1; transform: scale(1); filter: blur(0); }
     }
-    body.loaded .hero-roles { opacity: 1; transform: translateY(0); }
-    .hero-roles .sep { color: var(--gold); margin: 0 8px; }
+    @keyframes glow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: #999; margin-bottom: 40px; font-weight: 300;
+      opacity: 0; animation: fadeInUp 1s ease-out 0.9s forwards;
+    }
 
     .hero-cta {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      opacity: 0; transform: translateY(20px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s;
+      display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: fadeInUp 1s ease-out 1.2s forwards;
     }
-    body.loaded .hero-cta { opacity: 1; transform: translateY(0); }
 
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px; border-radius: 50px;
-      font-size: 0.9rem; font-weight: 600; text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      cursor: pointer; border: none; letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; border-radius: 50px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer; border: 2px solid;
+      position: relative; overflow: hidden;
     }
+    .btn::before {
+      content: ''; position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn:hover::before { width: 300px; height: 300px; }
     .btn-primary {
-      background: var(--gold); color: #0a0a0a;
+      background: var(--gold); color: #0a0a0a; border-color: var(--gold);
     }
     .btn-primary:hover {
-      background: var(--gold-light); transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(212,168,67,0.35);
+      background: var(--gold-light); transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212,168,67,0.4);
     }
     .btn-outline {
       background: transparent; color: var(--text-primary);
-      border: 1.5px solid rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.2);
     }
     .btn-outline:hover {
       border-color: var(--gold); color: var(--gold);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
 
     /* Credits marquee */
-    .hero-marquee-wrap {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 10;
-      overflow: hidden; padding: 20px 0;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      background: linear-gradient(180deg, transparent, rgba(10,10,10,0.9));
+    .credits-marquee {
+      position: absolute; bottom: 40px; left: 0;
+      width: 100%; overflow: hidden;
+      padding: 20px 0; z-index: 5;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(212,168,67,0.2);
+      border-bottom: 1px solid rgba(212,168,67,0.2);
     }
-    .hero-marquee {
-      display: flex; gap: 60px; white-space: nowrap;
+    .marquee-content {
+      display: flex;
       animation: marqueeScroll 30s linear infinite;
+      white-space: nowrap;
     }
-    .hero-marquee span {
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--text-muted); flex-shrink: 0;
-    }
-    .hero-marquee .highlight { color: var(--gold); }
     @keyframes marqueeScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
+    }
+    .credit-item {
+      display: inline-flex; align-items: center;
+      margin: 0 30px;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(212,168,67,0.5);
+      animation: creditGlow 3s ease-in-out infinite;
+    }
+    @keyframes creditGlow {
+      0%, 100% { text-shadow: 0 0 10px rgba(212,168,67,0.5); transform: scale(1); }
+      50% { text-shadow: 0 0 20px rgba(212,168,67,0.8); transform: scale(1.05); }
+    }
+    .credit-item::before {
+      content: '★'; margin-right: 10px;
+      animation: spin 4s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     /* --- SECTIONS --- */
@@ -818,9 +901,9 @@
       .bento-card--headshot { grid-row: span 1; min-height: 350px; }
       .projects-grid { grid-template-columns: 1fr; }
       .content-layout { grid-template-columns: 1fr; }
-      .hero-headshot-bg { display: none; }
-      .hero-content { padding: 100px 20px 60px; }
-      .hero-name { letter-spacing: -1px; }
+      .hero-name { font-size: 3rem; }
+      .hero-subtitle { font-size: 1.2rem; }
+      .credits-marquee { bottom: 20px; }
       .press-logos { gap: 28px; }
       .press-logos img { height: 22px; }
     }
@@ -881,6 +964,146 @@
     .formkit-form .formkit-guarantee {
       color: rgba(255,255,255,0.7) !important;
     }
+
+    /* Exit Intent Popup */
+    .exit-popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .exit-popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .exit-popup {
+      background: rgba(20,20,20,0.95);
+      border: 1px solid rgba(212,168,67,0.3);
+      border-radius: 20px;
+      max-width: 480px;
+      width: 90%;
+      padding: 40px;
+      position: relative;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .exit-popup-overlay.active .exit-popup {
+      transform: scale(1) translateY(0);
+    }
+    .exit-popup-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #666;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.2s;
+    }
+    .exit-popup-close:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+    .exit-popup-content {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .exit-popup-icon {
+      flex-shrink: 0;
+      width: 80px; height: 80px;
+      background: rgba(212,168,67,0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .exit-popup-text { flex: 1; }
+    .exit-popup-headline {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .exit-popup-body {
+      color: #999;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .exit-popup-form {
+      margin-bottom: 12px;
+    }
+    .exit-popup-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .exit-popup-input:focus {
+      border-color: var(--gold);
+    }
+    .exit-popup-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .exit-popup-submit:hover {
+      background: var(--gold-light);
+    }
+    .exit-popup-proof {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .exit-popup-dismiss {
+      background: none;
+      border: none;
+      color: #444;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .exit-popup-dismiss:hover {
+      color: #666;
+    }
+    @media (max-width: 500px) {
+      .exit-popup-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .exit-popup-icon {
+        margin: 0 auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -899,61 +1122,68 @@
         <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
       </button>
       <ul class="nav-links">
+        <li><a href="its-your-fault.html" onclick="closeMenu()" style="background:var(--gold);color:#0a0a0a;">It's Your Fault</a></li>
         <li><a href="#about" onclick="closeMenu()">About</a></li>
         <li><a href="#projects" onclick="closeMenu()">Work</a></li>
-        <li><a href="#studios" onclick="closeMenu()">Ventures</a></li>
-        <li><a href="#in-development" onclick="closeMenu()">In Development</a></li>
-        <li><a href="#content" onclick="closeMenu()">Content</a></li>
-        <li><a href="#connect" onclick="closeMenu()">Connect</a></li>
+        <li><a href="book-me.html" onclick="closeMenu()">Book Me</a></li>
+        <li><a href="#connect" onclick="closeMenu()">The Vault</a></li>
+        <li><a href="affirmations.html" onclick="closeMenu()">Affirmations</a></li>
         <li><a href="credits.html" onclick="closeMenu()">Credits</a></li>
-        <li><a href="izzy.html" onclick="closeMenu()">Olympics</a></li>
+        <li><a href="press.html" onclick="closeMenu()">Press</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
+    <!-- Matrix rain effect -->
+    <div class="matrix-rain" id="matrixRain" aria-hidden="true"></div>
+
+    <!-- Cinematic spotlight sweep -->
+    <div class="hero-spotlight" aria-hidden="true"></div>
+
+    <!-- Floating particles canvas -->
     <canvas id="heroCanvas" aria-hidden="true"></canvas>
-    <div class="hero-bg-gradient"></div>
-    <div class="hero-headshot-bg">
-      <img src="https://media.themoviedb.org/t/p/w780/uxy54aFyWM1Bow5P9EAY4iCyMbu.jpg" alt="Justin Shenkarow headshot" loading="eager">
-    </div>
+
+    <!-- Hero content -->
     <div class="hero-content">
-      <h1 class="hero-name">Justin<br>Shenkarow</h1>
-      <p class="hero-roles">
-        Voice Artist<span class="sep">/</span>Actor<span class="sep">/</span>Producer<span class="sep">/</span>Creator
-      </p>
+      <div class="hero-badge">Emmy Winner &#8226; Voice Artist &#8226; Producer</div>
+      <h1 class="hero-name">Justin Shenkarow</h1>
+      <p class="hero-subtitle">Voice Artist &#8226; Actor &#8226; Producer &#8226; Creator</p>
       <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary magnetic-btn">Explore My Work</a>
-        <a href="#connect" class="btn btn-outline magnetic-btn">Get In Touch</a>
+        <a href="its-your-fault.html" class="btn btn-primary">See "It's Your Fault"</a>
+        <a href="#connect" class="btn btn-outline">Join The Vault</a>
       </div>
     </div>
-    <div class="hero-marquee-wrap" aria-hidden="true">
-      <div class="hero-marquee">
-        <span class="highlight">Hey Arnold!</span>
-        <span>Picket Fences</span>
-        <span class="highlight">Eerie, Indiana</span>
-        <span>Avatar</span>
-        <span class="highlight">Spidey & His Amazing Friends</span>
-        <span>Good Will Hunting</span>
-        <span class="highlight">Ice Age</span>
-        <span>Bee Movie</span>
-        <span class="highlight">Shrek the Third</span>
-        <span>Silver Linings Playbook</span>
-        <span class="highlight">TZero Studios</span>
-        <span>Bronx Buds</span>
-        <span class="highlight">Hey Arnold!</span>
-        <span>Picket Fences</span>
-        <span class="highlight">Eerie, Indiana</span>
-        <span>Avatar</span>
-        <span class="highlight">Spidey & His Amazing Friends</span>
-        <span>Good Will Hunting</span>
-        <span class="highlight">Ice Age</span>
-        <span>Bee Movie</span>
-        <span class="highlight">Shrek the Third</span>
-        <span>Silver Linings Playbook</span>
-        <span class="highlight">TZero Studios</span>
-        <span>Bronx Buds</span>
+
+    <!-- Scrolling credits marquee -->
+    <div class="credits-marquee" aria-hidden="true">
+      <div class="marquee-content">
+        <span class="credit-item">Hey Arnold!</span>
+        <span class="credit-item">Picket Fences</span>
+        <span class="credit-item">Eerie, Indiana</span>
+        <span class="credit-item">Avatar</span>
+        <span class="credit-item">Spidey & His Amazing Friends</span>
+        <span class="credit-item">Good Will Hunting</span>
+        <span class="credit-item">Ice Age</span>
+        <span class="credit-item">Bee Movie</span>
+        <span class="credit-item">Shrek the Third</span>
+        <span class="credit-item">Silver Linings Playbook</span>
+        <span class="credit-item">TZero Studios</span>
+        <span class="credit-item">Bronx Buds</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="credit-item">Hey Arnold!</span>
+        <span class="credit-item">Picket Fences</span>
+        <span class="credit-item">Eerie, Indiana</span>
+        <span class="credit-item">Avatar</span>
+        <span class="credit-item">Spidey & His Amazing Friends</span>
+        <span class="credit-item">Good Will Hunting</span>
+        <span class="credit-item">Ice Age</span>
+        <span class="credit-item">Bee Movie</span>
+        <span class="credit-item">Shrek the Third</span>
+        <span class="credit-item">Silver Linings Playbook</span>
+        <span class="credit-item">TZero Studios</span>
+        <span class="credit-item">Bronx Buds</span>
       </div>
     </div>
   </section>
@@ -1045,8 +1275,6 @@
         <button class="filter-btn active" onclick="filterCards('all')">All</button>
         <button class="filter-btn" onclick="filterCards('voice')">Voice Acting</button>
         <button class="filter-btn" onclick="filterCards('screen')">TV & Film</button>
-        <button class="filter-btn" onclick="filterCards('production')">Production</button>
-        <button class="filter-btn" onclick="filterCards('current')">Current</button>
       </div>
 
       <div class="projects-grid" id="projectsGrid">
@@ -1087,22 +1315,20 @@
           </div>
         </div>
 
-        <!-- Animated Films -->
+        <!-- Charlie Brown -->
         <div class="project-card" data-category="voice">
           <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><circle cx="12" cy="5" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/><circle cx="5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg>
-            </div>
+          <div class="card-poster" style="background:#87ceeb;">
+            <img src="peanuts-gang.png" alt="Charlie Brown and the Peanuts Gang" loading="lazy" style="object-fit:contain;object-position:center bottom;">
+            <div class="card-poster-overlay" style="background:linear-gradient(180deg, transparent 60%, rgba(20,20,20,0.95) 100%);"></div>
+            <span class="card-category-badge">Voice Acting</span>
           </div>
           <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Voice Acting</span>
-            <h3 class="card-title">Animated Feature Films</h3>
-            <p class="card-desc">Voice contributions to major animated blockbusters including Ice Age, Bee Movie, and Shrek the Third.</p>
+            <h3 class="card-title">Charlie Brown</h3>
+            <p class="card-desc">Voiced the iconic Charlie Brown, one of the most beloved characters in American history.</p>
             <div class="card-tags">
-              <span class="card-tag">Ice Age</span>
-              <span class="card-tag">Bee Movie</span>
-              <span class="card-tag">Shrek 3</span>
+              <span class="card-tag">Peanuts</span>
+              <span class="card-tag">Animated</span>
             </div>
           </div>
         </div>
@@ -1110,13 +1336,12 @@
         <!-- Picket Fences -->
         <div class="project-card" data-category="screen">
           <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="13" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
-            </div>
+          <div class="card-poster">
+            <img src="picket-fences-cast.jpg" alt="Picket Fences Cast" loading="lazy">
+            <div class="card-poster-overlay"></div>
+            <span class="card-category-badge">Television</span>
           </div>
           <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Television</span>
             <h3 class="card-title">Matthew Brock &mdash; Picket Fences</h3>
             <p class="card-desc">Starred as Matthew Brock on CBS's critically acclaimed, Emmy-winning drama series created by David E. Kelley.</p>
             <div class="card-tags">
@@ -1130,93 +1355,17 @@
         <!-- Eerie Indiana -->
         <div class="project-card" data-category="screen">
           <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8v12l3-3 2 2 3-3 3 3 2-2 3 3V10a8 8 0 0 0-8-8z"/><circle cx="9" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="11" r="1" fill="currentColor" stroke="none"/></svg>
-            </div>
+          <div class="card-poster">
+            <img src="eerie-indiana-cast.webp" alt="Eerie, Indiana Cast" loading="lazy">
+            <div class="card-poster-overlay"></div>
+            <span class="card-category-badge">Television</span>
           </div>
           <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Television</span>
             <h3 class="card-title">Simon Holmes &mdash; Eerie, Indiana</h3>
             <p class="card-desc">Co-starred in NBC's cult classic series about strange occurrences in a seemingly normal small town. 100% on Rotten Tomatoes.</p>
             <div class="card-tags">
               <span class="card-tag">NBC</span>
               <span class="card-tag">Cult Classic</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Major Credits -->
-        <div class="project-card" data-category="screen">
-          <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M4 2l4 4H4z"/><path d="M8 2l4 4H8z"/><path d="M12 2l4 4h-4z"/><path d="M16 2l4 4h-4z"/><rect x="2" y="6" width="20" height="16" rx="2"/></svg>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Film & Television</span>
-            <h3 class="card-title">Major Film & TV Credits</h3>
-            <p class="card-desc">Appeared in landmark productions including Avatar, Good Will Hunting, Silver Linings Playbook, Home Improvement, and Z Nation.</p>
-            <div class="card-tags">
-              <span class="card-tag">Avatar</span>
-              <span class="card-tag">Good Will Hunting</span>
-              <span class="card-tag">Silver Linings Playbook</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Production -->
-        <div class="project-card" data-category="production">
-          <div class="card-glow"></div>
-          <div class="card-icon-wrap">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="card-category-badge" style="position:static;background:none;border:none;padding:0;margin-bottom:8px;display:inline-block;">Production</span>
-            <h3 class="card-title">Shake That Fro Productions</h3>
-            <p class="card-desc">Founded his own production company, producing award-winning short films and developing original content across multiple formats.</p>
-            <div class="card-tags">
-              <span class="card-tag">Producer</span>
-              <span class="card-tag">Award-Winning</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- TZero -->
-        <div class="project-card" data-category="current">
-          <div class="card-glow"></div>
-          <div class="card-poster">
-            <img src="https://images.squarespace-cdn.com/content/v1/6254bb15f30def7d1a589d99/e3c2f49f-6702-4cfa-a67e-5bcf16872430/Untitled_Artwork.jpg" alt="TZero Studios" loading="lazy">
-            <div class="card-poster-overlay"></div>
-            <span class="card-category-badge">Current</span>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">TZero Studios</h3>
-            <p class="card-desc">Co-founded an Emmy-winning animation and content studio building the next chapter in entertainment through innovative ventures and creative partnerships.</p>
-            <div class="card-tags">
-              <span class="card-tag">Co-Founder</span>
-              <span class="card-tag">Emmy-Winning</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bronx Buds -->
-        <div class="project-card" data-category="current">
-          <div class="card-glow"></div>
-          <div class="card-poster">
-            <img src="https://images.squarespace-cdn.com/content/v1/6670760701edc06e8699487a/aa6d4c70-4186-4678-9141-c1dde181a0fc/BB-poster.png" alt="The Bronx Buds" loading="lazy">
-            <div class="card-poster-overlay"></div>
-            <span class="card-category-badge">Current</span>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">The Bronx Buds</h3>
-            <p class="card-desc">An Emmy-nominated animated series following young athletes pursuing their baseball dreams, streaming on Gotham Sports.</p>
-            <div class="card-tags">
-              <span class="card-tag">Animated Series</span>
-              <span class="card-tag">Emmy-Nominated</span>
             </div>
           </div>
         </div>
@@ -1229,6 +1378,72 @@
   <div class="wave-divider" aria-hidden="true">
     <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
       <path d="M0,60 C300,10 500,50 700,25 C900,5 1100,40 1200,15 L1200,60 Z" fill="#0a0a0a"/>
+    </svg>
+  </div>
+
+  <!-- REELS -->
+  <section id="reels" style="background:#0a0a0a;">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">Watch & Listen</p>
+        <h2 class="section-title">Reels</h2>
+        <p class="section-subtitle">From on-screen performances to voice over work &mdash; see and hear the talent in action.</p>
+      </div>
+
+      <!-- Acting Reel -->
+      <div class="reveal" style="margin-top:48px;margin-bottom:48px;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(212,168,67,0.3);border-radius:20px;padding:24px;max-width:900px;margin:0 auto;">
+          <h3 style="font-size:1.5rem;font-weight:700;margin:0 0 20px 0;text-align:center;">Acting Reel</h3>
+          <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;background:#000;">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/C_3K03Yovw0?rel=0" title="Justin Shenkarow Acting Reel" frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voice Over Reels -->
+      <h3 class="reveal" style="font-size:1.3rem;font-weight:600;color:var(--gold);margin-bottom:24px;text-align:center;">Voice Over Demos</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;">
+        <!-- Commercial Reel -->
+        <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(212,168,67,0.2);border-radius:16px;padding:32px;transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+            <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:12px;display:flex;align-items:center;justify-content:center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#0a0a0a" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div>
+              <h3 style="font-size:1.3rem;font-weight:700;margin:0;">Commercial Reel</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem;margin:0;">Voice Over Demo</p>
+            </div>
+          </div>
+          <audio controls style="width:100%;height:48px;border-radius:8px;">
+            <source src="commercial-reel.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <!-- Promo Reel -->
+        <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(212,168,67,0.2);border-radius:16px;padding:32px;transition:all 0.3s ease;">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+            <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:12px;display:flex;align-items:center;justify-content:center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#0a0a0a" stroke="none"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div>
+              <h3 style="font-size:1.3rem;font-weight:700;margin:0;">Promo Reel</h3>
+              <p style="color:var(--text-muted);font-size:0.9rem;margin:0;">Voice Over Demo</p>
+            </div>
+          </div>
+          <audio controls style="width:100%;height:48px;border-radius:8px;">
+            <source src="promo-reel.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,60 C200,40 400,10 600,35 C800,55 1000,20 1200,45 L1200,60 Z" fill="#111"/>
     </svg>
   </div>
 
@@ -1289,7 +1504,9 @@
       <div class="dev-grid">
         <!-- It's Your Fault -->
         <div class="dev-card dev-card--iyf reveal">
-          <div class="dev-card-bg"></div>
+          <div class="dev-card-bg">
+            <img src="its-your-fault.jpg" alt="It's Your Fault" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+          </div>
           <div class="dev-card-content">
             <h3>It's Your Fault</h3>
             <div class="dev-role">Creator / Star</div>
@@ -1304,7 +1521,9 @@
 
         <!-- Kleptocracy -->
         <div class="dev-card dev-card--klep reveal">
-          <div class="dev-card-bg"></div>
+          <div class="dev-card-bg">
+            <img src="kleptocracy.png" alt="Kleptocracy" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+          </div>
           <div class="dev-card-content">
             <h3>Kleptocracy</h3>
             <div class="dev-role">Producer</div>
@@ -1319,7 +1538,9 @@
 
         <!-- ERT -->
         <div class="dev-card dev-card--ert reveal">
-          <div class="dev-card-bg"></div>
+          <div class="dev-card-bg">
+            <img src="ert.png" alt="ERT - Evidence Response Team" style="width:100%;height:100%;object-fit:cover;opacity:0.5;">
+          </div>
           <div class="dev-card-content">
             <h3>ERT</h3>
             <div class="dev-role">Producer</div>
@@ -1331,21 +1552,25 @@
             </div>
           </div>
         </div>
+
+        <!-- On The Rocks -->
+        <div class="dev-card dev-card--otr reveal">
+          <div class="dev-card-bg">
+            <img src="on-the-rocks.png" alt="On The Rocks" style="width:100%;height:100%;object-fit:cover;opacity:0.6;">
+          </div>
+          <div class="dev-card-content">
+            <h3>On The Rocks</h3>
+            <div class="dev-role" style="color:#d4a843;">Writer / Director</div>
+            <p>On the Rocks follows two best friends stumbling through Kentucky's Bourbon Trail—ostensibly to celebrate craft spirits and Southern tradition, but really just avoiding their crumbling lives back home. Between distillery tours, questionable life advice, and way too many tastings, they discover that the path to clarity might be found at the bottom of a glass... or maybe just in each other's company.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="dev-badge" style="background:rgba(212,168,67,0.15);color:#d4a843;border:1px solid rgba(212,168,67,0.3);">Film</span>
+              <span class="dev-badge badge--dev">In Development</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- PRESS LOGOS -->
-  <div class="press-section reveal">
-    <div class="press-inner">
-      <p class="press-label">Featured In</p>
-      <div class="press-logos">
-        <img src="https://images.squarespace-cdn.com/content/v1/6254bb15f30def7d1a589d99/82c92a10-8c35-4ab5-ad97-6a61f0802ff7/hollywood-reporter-logo.jpg.webp" alt="The Hollywood Reporter" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/6254bb15f30def7d1a589d99/752d1707-b88a-42b8-9c78-cbb7ffd4c68d/deadline-hollywood-vector-logo.webp" alt="Deadline" loading="lazy">
-        <img src="https://images.squarespace-cdn.com/content/v1/6254bb15f30def7d1a589d99/ae422777-a30c-4261-960d-551c6864a39b/sbj.png" alt="Sports Business Journal" loading="lazy">
-      </div>
-    </div>
-  </div>
 
   <!-- WAVE -->
   <div class="wave-divider" aria-hidden="true">
@@ -1403,14 +1628,11 @@
             </div>
           </div>
         </div>
-        <div class="embed-area reveal">
-          <div class="embed-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-          </div>
-          <p class="embed-text">TikTok & Social Content</p>
-          <p class="embed-sub">Embed your latest TikTok or Instagram content here.<br>Replace this placeholder with a TikTok embed code.</p>
+        <div class="embed-area reveal" style="padding:0;overflow:hidden;">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@justinshenkarowofficialofficial" data-unique-id="justinshenkarowofficial" data-embed-type="creator" style="max-width:100%;min-width:288px;margin:0;">
+            <section><a target="_blank" href="https://www.tiktok.com/@justinshenkarowofficialofficial">@justinshenkarowofficial</a></section>
+          </blockquote>
+          <script async src="https://www.tiktok.com/embed.js"></script>
         </div>
       </div>
     </div>
@@ -1441,7 +1663,7 @@
           <svg viewBox="0 0 24 24" style="stroke:none;fill:currentColor;"><rect x="2" y="4" width="20" height="16" rx="2"/><text x="12" y="16" font-size="9" font-weight="900" text-anchor="middle" font-family="sans-serif">IMDb</text></svg>
           IMDb
         </a>
-        <a href="https://www.tiktok.com/@justinshenkarow" target="_blank" rel="noopener" class="social-link">
+        <a href="https://www.tiktok.com/@justinshenkarowofficial" target="_blank" rel="noopener" class="social-link">
           <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
           TikTok
         </a>
@@ -1459,11 +1681,71 @@
         <p>Interested in voice acting, appearances, collaborations, or production? Let's connect.</p>
         <a href="mailto:justinfilm@gmail.com" class="btn btn-primary magnetic-btn">Get In Touch</a>
       </div>
-    </div>
-    <div style="margin-top:3rem;text-align:center;">
-      <h3 style="color:#fff;margin-bottom:1rem;">Stay in the Loop</h3>
-      <p style="color:rgba(255,255,255,0.7);margin-bottom:1.5rem;">Sign up for updates on new projects, appearances, and more.</p>
-      <script async data-uid="3a6a08f3f2" src="https://justin-shenkarow.kit.com/3a6a08f3f2/index.js"></script>
+
+      <!-- Newsletter Signup -->
+      <div class="reveal" style="margin-top:4rem;max-width:600px;margin-left:auto;margin-right:auto;background:linear-gradient(135deg,rgba(212,168,67,0.1) 0%,rgba(212,168,67,0.05) 100%);border:2px solid rgba(212,168,67,0.3);border-radius:24px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;">
+        <!-- Animated glow -->
+        <div style="position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(212,168,67,0.1) 0%,transparent 70%);animation:pulseGlow 4s ease-in-out infinite;pointer-events:none;"></div>
+        <style>@keyframes pulseGlow{0%,100%{opacity:0.5;transform:scale(1);}50%{opacity:1;transform:scale(1.1);}}</style>
+
+        <h3 style="font-size:2rem;font-weight:800;margin:0 0 12px 0;background:linear-gradient(135deg,#d4a843 0%,#f0d078 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;">From The Vault</h3>
+        <p style="color:rgba(255,255,255,0.7);margin:0 0 28px 0;font-size:1.1rem;position:relative;">Exclusive 90s nostalgia, behind-the-scenes stories, and updates from three decades in entertainment.</p>
+
+        <ul style="list-style:none;padding:0;margin:0 0 32px 0;text-align:left;display:inline-block;position:relative;">
+          <li style="color:rgba(255,255,255,0.85);padding:8px 0;font-size:0.95rem;display:flex;align-items:center;gap:12px;">
+            <span style="color:#d4a843;font-size:1.2rem;">&#9733;</span> Untold stories from Hey Arnold!, Eerie Indiana & more
+          </li>
+          <li style="color:rgba(255,255,255,0.85);padding:8px 0;font-size:0.95rem;display:flex;align-items:center;gap:12px;">
+            <span style="color:#d4a843;font-size:1.2rem;">&#9733;</span> First look at new projects & developments
+          </li>
+          <li style="color:rgba(255,255,255,0.85);padding:8px 0;font-size:0.95rem;display:flex;align-items:center;gap:12px;">
+            <span style="color:#d4a843;font-size:1.2rem;">&#9733;</span> Exclusive voice clips & throwback content
+          </li>
+          <li style="color:rgba(255,255,255,0.85);padding:8px 0;font-size:0.95rem;display:flex;align-items:center;gap:12px;">
+            <span style="color:#d4a843;font-size:1.2rem;">&#9733;</span> Personal updates & industry insights
+          </li>
+        </ul>
+
+        <form id="vaultForm" style="position:relative;" onsubmit="submitVaultForm(event)">
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+            <input type="text" id="vaultName" name="name" placeholder="Your Name" required style="width:100%;padding:14px 20px;border:2px solid rgba(212,168,67,0.3);border-radius:12px;background:rgba(0,0,0,0.4);color:#fff;font-size:1rem;outline:none;transition:all 0.3s ease;" onfocus="this.style.borderColor='#d4a843';this.style.boxShadow='0 0 20px rgba(212,168,67,0.2)';" onblur="this.style.borderColor='rgba(212,168,67,0.3)';this.style.boxShadow='none';">
+            <input type="email" id="vaultEmail" name="email" placeholder="Your Email" required style="width:100%;padding:14px 20px;border:2px solid rgba(212,168,67,0.3);border-radius:12px;background:rgba(0,0,0,0.4);color:#fff;font-size:1rem;outline:none;transition:all 0.3s ease;" onfocus="this.style.borderColor='#d4a843';this.style.boxShadow='0 0 20px rgba(212,168,67,0.2)';" onblur="this.style.borderColor='rgba(212,168,67,0.3)';this.style.boxShadow='none';">
+          </div>
+          <button type="submit" id="vaultSubmit" style="width:100%;padding:16px 32px;background:linear-gradient(135deg,#d4a843 0%,#f0d078 100%);color:#0a0a0a;font-size:1rem;font-weight:700;border:none;border-radius:12px;cursor:pointer;transition:all 0.3s ease;text-transform:uppercase;letter-spacing:1px;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 30px rgba(212,168,67,0.4)';" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none';">Subscribe to The Vault</button>
+        </form>
+        <script>
+        async function submitVaultForm(e) {
+          e.preventDefault();
+          const btn = document.getElementById('vaultSubmit');
+          const originalText = btn.textContent;
+          btn.textContent = 'Subscribing...';
+          btn.disabled = true;
+          try {
+            await fetch('https://script.google.com/macros/s/AKfycbz7RG2Q61m4UiDZYEpW_Iiz0ZsHLH_SgQOifJ9JOGf7lMrd4rWp8pv_cGGYgSNBiItE/exec', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: document.getElementById('vaultName').value,
+                email: document.getElementById('vaultEmail').value,
+                source: 'From The Vault - justinshenkarow.com'
+              })
+            });
+            btn.textContent = 'Welcome to The Vault!';
+            btn.style.background = 'linear-gradient(135deg,#4CAF50 0%,#8BC34A 100%)';
+            document.getElementById('vaultName').value = '';
+            document.getElementById('vaultEmail').value = '';
+            setTimeout(() => { btn.textContent = originalText; btn.style.background = 'linear-gradient(135deg,#d4a843 0%,#f0d078 100%)'; btn.disabled = false; }, 3000);
+          } catch (err) {
+            btn.textContent = 'Error - Try Again';
+            btn.style.background = 'linear-gradient(135deg,#e74c3c 0%,#c0392b 100%)';
+            setTimeout(() => { btn.textContent = originalText; btn.style.background = 'linear-gradient(135deg,#d4a843 0%,#f0d078 100%)'; btn.disabled = false; }, 3000);
+          }
+        }
+        </script>
+
+        <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:16px;position:relative;">No spam, ever. Unsubscribe anytime.</p>
+      </div>
     </div>
   </section>
 
@@ -1475,8 +1757,29 @@
   <script>
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    // Entrance
-    requestAnimationFrame(() => document.body.classList.add('loaded'));
+    // Matrix rain effect
+    (function() {
+      const matrixRain = document.getElementById('matrixRain');
+      if (!matrixRain) return;
+
+      const characters = '01JUSTINSHENKАROW★';
+      const columnCount = 15;
+
+      for (let i = 0; i < columnCount; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = (i / columnCount * 100) + '%';
+        column.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        column.style.animationDelay = (Math.random() * 5) + 's';
+
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+          text += characters[Math.floor(Math.random() * characters.length)] + '<br>';
+        }
+        column.innerHTML = text;
+        matrixRain.appendChild(column);
+      }
+    })();
 
     // Nav scroll
     const nav = document.getElementById('nav');
@@ -1518,51 +1821,61 @@
       });
     }
 
-    // Hero particle starfield
+    // Floating gold particles
     (function() {
       const canvas = document.getElementById('heroCanvas');
       const ctx = canvas.getContext('2d');
-      let particles = [], animId, isVisible = true;
-      const COUNT = 70, DIST = 110;
+      const particleCount = 50;
+      let particles = [];
 
-      function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-      function create() {
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 3 + 1;
+          this.speedX = Math.random() * 0.5 - 0.25;
+          this.speedY = Math.random() * 0.5 - 0.25;
+          this.opacity = Math.random() * 0.5 + 0.3;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(212, 168, 67, ${this.opacity})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = 'rgba(212, 168, 67, 0.8)';
+          ctx.fill();
+        }
+      }
+
+      function init() {
         particles = [];
-        for (let i = 0; i < COUNT; i++) {
-          particles.push({
-            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
-            r: Math.random() * 1.6 + 0.4, alpha: Math.random() * 0.4 + 0.15
-          });
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
         }
       }
-      function draw() {
-        if (!isVisible) return;
+
+      function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
-          if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
-          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(212,168,67,${p.alpha})`; ctx.fill();
-          for (let j = i + 1; j < particles.length; j++) {
-            const q = particles[j];
-            const dx = p.x - q.x, dy = p.y - q.y, d = Math.sqrt(dx*dx + dy*dy);
-            if (d < DIST) {
-              ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-              ctx.strokeStyle = `rgba(212,168,67,${0.06*(1-d/DIST)})`; ctx.lineWidth = 0.5; ctx.stroke();
-            }
-          }
-        }
-        animId = requestAnimationFrame(draw);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
       }
-      const heroObs = new IntersectionObserver(entries => {
-        entries.forEach(e => { isVisible = e.isIntersecting; if (isVisible) animId = requestAnimationFrame(draw); });
-      }, { threshold: 0 });
-      heroObs.observe(document.getElementById('hero'));
-      window.addEventListener('resize', () => { resize(); create(); });
-      resize(); create(); draw();
+
+      resize();
+      init();
+      animate();
+      window.addEventListener('resize', () => { resize(); init(); });
     })();
 
     // Card interactions (glow + tilt)
@@ -1635,7 +1948,100 @@
         }
       }, { passive: true });
     }
+
+    // Exit Intent Popup
+    (function() {
+      let hasSeenPopup = localStorage.getItem('exitPopupSeen');
+      let isSubscribed = localStorage.getItem('vaultSubscribed');
+
+      // Check if 7 days have passed
+      if (hasSeenPopup) {
+        const lastSeen = parseInt(localStorage.getItem('exitPopupSeen'));
+        if (Date.now() - lastSeen > 7 * 24 * 60 * 60 * 1000) {
+          hasSeenPopup = false;
+        }
+      }
+
+      function showExitPopup() {
+        if (!hasSeenPopup && !isSubscribed) {
+          document.getElementById('exitPopup').classList.add('active');
+          hasSeenPopup = true;
+          localStorage.setItem('exitPopupSeen', Date.now());
+        }
+      }
+
+      function closeExitPopup() {
+        document.getElementById('exitPopup').classList.remove('active');
+      }
+
+      // Desktop: exit intent
+      document.addEventListener('mouseout', function(e) {
+        if (e.clientY < 10) {
+          showExitPopup();
+        }
+      });
+
+      // Mobile: show after 45 seconds
+      if (isTouchDevice) {
+        setTimeout(showExitPopup, 45000);
+      }
+
+      // Close on overlay click
+      document.getElementById('exitPopup').addEventListener('click', function(e) {
+        if (e.target === this) closeExitPopup();
+      });
+
+      // Expose close function globally
+      window.closeExitPopup = closeExitPopup;
+
+      // Popup form submission
+      document.getElementById('exitPopupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('exitPopupEmail').value;
+
+        // Submit to same Google Apps Script
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwWj9fGhFpJLM_TwxY3rXj4J9xR7CKUHbVNvFj8QJ5ufLvHKHMHvxJvEJD4jnPYnqHt/exec';
+        fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            'email': email,
+            'name': 'Exit Popup Signup',
+            'source': 'exit-popup'
+          })
+        });
+
+        localStorage.setItem('vaultSubscribed', 'true');
+        this.innerHTML = '<p style="color:var(--gold);font-size:1.1rem;font-weight:600;">You\'re in The Vault!</p>';
+        setTimeout(closeExitPopup, 2000);
+      });
+    })();
   </script>
+
+  <!-- Exit Intent Popup -->
+  <div class="exit-popup-overlay" id="exitPopup">
+    <div class="exit-popup">
+      <button class="exit-popup-close" onclick="closeExitPopup()">✕</button>
+      <div class="exit-popup-content">
+        <div class="exit-popup-icon">🗄️</div>
+        <div class="exit-popup-text">
+          <h3 class="exit-popup-headline">Wait — Before You Go</h3>
+          <p class="exit-popup-body">
+            I've got 30 years of stories I've never told anyone. The chaos behind Hey Arnold. The line that got cut. What actually happened on set.
+            <br><br>
+            Want in?
+          </p>
+          <form class="exit-popup-form" id="exitPopupForm">
+            <input type="email" class="exit-popup-input" id="exitPopupEmail" placeholder="Your email" required>
+            <button type="submit" class="exit-popup-submit">Open The Vault</button>
+          </form>
+          <p class="exit-popup-proof">Join 3,000+ fans. No spam. Just stories.</p>
+          <button class="exit-popup-dismiss" onclick="closeExitPopup()">No thanks, I'll miss out</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

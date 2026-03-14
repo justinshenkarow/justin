@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's Your Fault — A Comedy Pilot by Justin Shenkarow</title>
+    <meta name="description" content="A voice-over actor whose on-camera career peaked at age 12 has his world turned upside down when his mother sells her house to become his reality TV momager. Schitt's Creek meets The Kardashians, raised by Who Framed Roger Rabbit.">
+    <link rel="canonical" href="https://www.justinshenkarow.com/its-your-fault.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="It's Your Fault — A Comedy Pilot by Justin Shenkarow">
+    <meta property="og:description" content="A voice-over actor whose on-camera career peaked at age 12 has his world turned upside down when his mother sells her house to become his reality TV momager.">
+    <meta property="og:image" content="https://www.justinshenkarow.com/its-your-fault.jpg">
+    <meta property="og:url" content="https://www.justinshenkarow.com/its-your-fault.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="It's Your Fault — A Comedy Pilot">
+    <meta name="twitter:description" content="Schitt's Creek meets The Kardashians, raised by Who Framed Roger Rabbit.">
+    <meta name="twitter:image" content="https://www.justinshenkarow.com/its-your-fault.jpg">
+
+    <style>
+        :root {
+            --gold: #d4a843;
+            --gold-light: #f0d078;
+            --gold-dark: #a07e2e;
+            --bg-dark: #0a0a0a;
+            --bg-section: #111;
+            --bg-card: rgba(20,20,20,0.9);
+            --text-primary: #f0f0f0;
+            --text-secondary: #999;
+            --text-muted: #666;
+            --border-subtle: rgba(255,255,255,0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: rgba(10,10,10,0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1.5px solid var(--gold);
+            border-radius: 50px;
+            padding: 6px 16px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--gold);
+            color: #0a0a0a;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 32px 80px;
+            position: relative;
+            background:
+                radial-gradient(ellipse at center, rgba(212,168,67,0.1) 0%, transparent 60%),
+                linear-gradient(180deg, rgba(0,0,0,0.5) 0%, var(--bg-dark) 100%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(212,168,67,0.15);
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-logline {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .hero-comp {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #0a0a0a;
+            border-color: var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,168,67,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .hero-counter strong {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 32px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        /* Premise Section */
+        #premise {
+            background: var(--bg-section);
+        }
+
+        .premise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .premise-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .premise-image {
+            aspect-ratio: 4/3;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .premise-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .premise-content h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .premise-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .premise-content strong {
+            color: var(--gold);
+        }
+
+        /* Characters Section */
+        #characters {
+            background: var(--bg-dark);
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .characters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .characters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .character-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold-dark);
+        }
+
+        .character-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .character-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .character-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .character-quote {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Join Section */
+        #join {
+            background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-dark) 100%);
+        }
+
+        .join-box {
+            background: var(--bg-card);
+            border: 2px solid var(--gold-dark);
+            border-radius: var(--radius);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .join-box h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .join-box p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .join-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        @media (max-width: 600px) {
+            .join-form {
+                flex-direction: column;
+            }
+        }
+
+        .join-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            background: rgba(0,0,0,0.4);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .join-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212,168,67,0.2);
+        }
+
+        .join-submit {
+            padding: 16px 32px;
+            background: var(--gold);
+            color: #0a0a0a;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .join-submit:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .join-proof {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .join-proof strong {
+            color: var(--gold);
+        }
+
+        .join-features {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .join-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .join-feature::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* Share Section */
+        #share {
+            background: var(--bg-dark);
+            padding: 60px 32px;
+        }
+
+        .share-box {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .share-box h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .share-copy {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .share-copy p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .share-copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 6px 12px;
+            background: var(--gold);
+            color: #0a0a0a;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .share-copy-btn:hover {
+            background: var(--gold-light);
+        }
+
+        .share-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .share-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .share-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Story Section */
+        #story {
+            background: var(--bg-section);
+        }
+
+        .story-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .story-content h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .story-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .story-signature {
+            margin-top: 32px;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Social Section */
+        #social {
+            background: var(--bg-dark);
+            padding: 80px 32px;
+        }
+
+        .social-box {
+            text-align: center;
+        }
+
+        .social-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 32px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* Mobile Nav */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Sticky Join Bar */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            padding: 16px 32px;
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-bar.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-bar-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sticky-bar-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .sticky-bar-text strong {
+            color: var(--gold);
+        }
+
+        .sticky-bar form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .sticky-bar input {
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            color: #fff;
+            font-size: 0.9rem;
+            width: 200px;
+        }
+
+        .sticky-bar input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .sticky-bar button {
+            padding: 10px 20px;
+            background: var(--gold);
+            color: #0a0a0a;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .sticky-bar-close {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">Justin Shenkarow</a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="book-me.html">Book Me</a></li>
+            <li><a href="index.html#connect">Connect</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <span class="hero-badge">New Comedy Pilot</span>
+    <h1 class="hero-title">It's Your Fault</h1>
+    <p class="hero-logline">
+        A voice-over actor whose on-camera career peaked at age 12 has his world turned upside down when his mother sells her house to become his reality TV momager.
+    </p>
+    <p class="hero-comp">"Schitt's Creek meets The Kardashians, raised by Who Framed Roger Rabbit"</p>
+    <div class="hero-cta">
+        <a href="#join" class="btn btn-primary">Join The Fault Line</a>
+        <a href="#story" class="btn btn-outline">The Story Behind It</a>
+    </div>
+    <div class="hero-counter">
+        <strong>5,247</strong> fans want to see this made
+    </div>
+</section>
+
+<!-- Premise -->
+<section id="premise">
+    <div class="container">
+        <div class="premise-grid">
+            <div class="premise-image">
+                <img src="its-your-fault.jpg" alt="It's Your Fault show artwork">
+            </div>
+            <div class="premise-content">
+                <h3>What happens when your mom becomes your momager?</h3>
+                <p>
+                    Justin Shenkarow had it all at age 12 — series regular roles, a face on lunchboxes, the whole child star package. Then puberty happened.
+                </p>
+                <p>
+                    Now he's 45, still grinding in the voice-over booth, and his biggest fan (his mother) has decided it's time for a comeback. Her plan? Sell the house, move in, and document the whole disaster for reality TV.
+                </p>
+                <p>
+                    The only problem? Justin's <strong>animated characters have opinions</strong>. Loud ones.
+                </p>
+                <p>
+                    <strong>"It's Your Fault"</strong> is a live-action/animation hybrid comedy where the voices in Justin's head are literally the characters he's played for 30 years — and they're not shy about telling him what to do.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Characters -->
+<section id="characters">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">Meet The Characters</p>
+            <h2 class="section-title">The Cast of Chaos</h2>
+        </div>
+        <div class="characters-grid">
+            <div class="character-card">
+                <div class="character-icon">🎬</div>
+                <div class="character-name">Justin</div>
+                <div class="character-role">The Son</div>
+                <p class="character-quote">"I peaked at 12. It's been a long plateau."</p>
+            </div>
+            <div class="character-card">
+                <div class="character-icon">🎨</div>
+                <div class="character-name">Animated Mom</div>
+                <div class="character-role">The Voice in His Head</div>
+                <p class="character-quote">"You need a manager. I'm your mother. Same thing."</p>
+            </div>
+            <div class="character-card">
+                <div class="character-icon">👩</div>
+                <div class="character-name">Real Mom</div>
+                <div class="character-role">The Momager</div>
+                <p class="character-quote">"I'm not a stage mom. I'm a producer with unconditional love."</p>
+            </div>
+            <div class="character-card">
+                <div class="character-icon">🧡</div>
+                <div class="character-name">Harold</div>
+                <div class="character-role">The Voice of Chaos</div>
+                <p class="character-quote">"Football head! Tell her she's WRONG!"</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Join The Fault Line -->
+<section id="join">
+    <div class="container">
+        <div class="join-box">
+            <h3>This show needs fans before it needs a network.</h3>
+            <p>
+                Hollywood greenlights shows with built-in audiences. That's where you come in.
+                Join <strong>The Fault Line</strong> — our community of fans who want to see this show get made.
+            </p>
+            <form class="join-form" id="faultlineForm" onsubmit="submitFaultlineForm(event)">
+                <input type="email" class="join-input" id="faultlineEmail" placeholder="Your email" required>
+                <button type="submit" class="join-submit">Join The Fault Line</button>
+            </form>
+            <p class="join-proof">
+                <strong id="fanCount">5,247</strong> fans already in. No spam.
+            </p>
+            <div class="join-features">
+                <span class="join-feature">First look at new scenes</span>
+                <span class="join-feature">Behind-the-scenes updates</span>
+                <span class="join-feature">Credit when we get picked up</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Share -->
+<section id="share">
+    <div class="share-box">
+        <h4>Help Us Make Noise</h4>
+        <div class="share-copy">
+            <p>"The voice of Harold from Hey Arnold made a show with his real mom and his animated mom and I NEED this to get picked up. @justinshenkarow #ItsYourFaultTV"</p>
+            <button class="share-copy-btn" onclick="copyShareText()">Copy</button>
+        </div>
+        <div class="share-links">
+            <a href="https://www.tiktok.com/@justinshenkarowofficial" target="_blank" class="share-link">TikTok</a>
+            <a href="https://www.instagram.com/justinshenkarow" target="_blank" class="share-link">Instagram</a>
+        </div>
+    </div>
+</section>
+
+<!-- Story -->
+<section id="story">
+    <div class="container">
+        <div class="story-content">
+            <h3>Why I Made This</h3>
+            <p>
+                I've been a working voice actor for 30 years. I've played characters that shaped childhoods. And I've watched every pilot I've pitched get notes like "love it, but who's the audience?"
+            </p>
+            <p>
+                So I made a show where I AM the audience.
+            </p>
+            <p>
+                "It's Your Fault" is about what happens when your dreams don't die, they just... mutate. It's about family, failure, and the voices in your head that won't shut up. It's also really, really funny.
+            </p>
+            <p>
+                My actual mother is in this. My animated characters are in this. Harold gives his mother notes. It's the most personal and most insane thing I've ever made.
+            </p>
+            <p>
+                Now I need your help getting someone to say yes.
+            </p>
+            <p class="story-signature">— Justin</p>
+        </div>
+    </div>
+</section>
+
+<!-- Social -->
+<section id="social">
+    <div class="social-box">
+        <h4 class="social-title">Follow The Journey</h4>
+        <div class="social-links">
+            <a href="https://www.tiktok.com/@justinshenkarowofficial" target="_blank" class="social-btn">
+                Follow on TikTok
+            </a>
+            <a href="https://www.instagram.com/justinshenkarow" target="_blank" class="social-btn">
+                Follow on Instagram
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Justin Shenkarow. <a href="index.html">Back to main site</a></p>
+</footer>
+
+<!-- Sticky Bar -->
+<div class="sticky-bar" id="stickyBar">
+    <div class="sticky-bar-inner">
+        <span class="sticky-bar-text">Join <strong>5,247</strong> fans on The Fault Line</span>
+        <form onsubmit="submitStickyForm(event)">
+            <input type="email" id="stickyEmail" placeholder="Your email" required>
+            <button type="submit">Join</button>
+        </form>
+    </div>
+    <button class="sticky-bar-close" onclick="closeStickyBar()">✕</button>
+</div>
+
+<script>
+    // Sticky bar visibility
+    let stickyBarClosed = false;
+
+    window.addEventListener('scroll', function() {
+        const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        const stickyBar = document.getElementById('stickyBar');
+
+        if (scrollPercent > 30 && !stickyBarClosed) {
+            stickyBar.classList.add('visible');
+        }
+    });
+
+    function closeStickyBar() {
+        document.getElementById('stickyBar').classList.remove('visible');
+        stickyBarClosed = true;
+    }
+
+    // Copy share text
+    function copyShareText() {
+        const text = "The voice of Harold from Hey Arnold made a show with his real mom and his animated mom and I NEED this to get picked up. @justinshenkarow #ItsYourFaultTV";
+        navigator.clipboard.writeText(text);
+        const btn = document.querySelector('.share-copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+    }
+
+    // Form submissions - connects to Google Apps Script
+    function submitFaultlineForm(e) {
+        e.preventDefault();
+        const email = document.getElementById('faultlineEmail').value;
+
+        // Submit to Google Apps Script (same as main site)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwWj9fGhFpJLM_TwxY3rXj4J9xR7CKUHbVNvFj8QJ5ufLvHKHMHvxJvEJD4jnPYnqHt/exec';
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                'email': email,
+                'name': 'Fault Line Signup',
+                'source': 'its-your-fault-page'
+            })
+        });
+
+        // Update UI
+        document.querySelector('.join-form').innerHTML = '<p style="color: var(--gold); font-size: 1.2rem; font-weight: 600;">You\'re in! Welcome to The Fault Line.</p>';
+        closeStickyBar();
+
+        // Increment counter display
+        const count = document.getElementById('fanCount');
+        count.textContent = (parseInt(count.textContent.replace(',', '')) + 1).toLocaleString();
+    }
+
+    function submitStickyForm(e) {
+        e.preventDefault();
+        const email = document.getElementById('stickyEmail').value;
+        document.getElementById('faultlineEmail').value = email;
+        submitFaultlineForm(e);
+    }
+</script>
+
+</body>
+</html>
