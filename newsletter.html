@@ -455,19 +455,14 @@
       submitBtn.textContent = 'Subscribing...';
       
       try {
-        // Send to Google Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycbx1dVfMP9RG83EDSl2g17VLNhkoZJSacp2nDuPz_zxotBTb6K4-iPlJLIWmuqsF3pdp/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email,
-            name: name,
-            source: 'Newsletter Landing Page'
-          })
-        });
+        // Build URL with parameters (GET request to avoid CORS)
+        const url = 'https://script.google.com/macros/s/AKfycbx1dVfMP9RG83EDSl2g17VLNhkoZJSacp2nDuPz_zxotBTb6K4-iPlJLIWmuqsF3pdp/exec' +
+          '?email=' + encodeURIComponent(email) +
+          '&name=' + encodeURIComponent(name) +
+          '&source=' + encodeURIComponent('Newsletter Landing Page');
         
+        // Use fetch with GET
+        const response = await fetch(url);
         const data = await response.json();
         
         if (data.result === 'success') {
