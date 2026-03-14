@@ -939,32 +939,38 @@
         setTimeout(() => btn.textContent = 'Copy', 2000);
     }
 
-    // Form submissions - connects to Google Apps Script
-    function submitFaultlineForm(e) {
+    // Form submissions - connects to Google Apps Script (same format as main Vault form)
+    async function submitFaultlineForm(e) {
         e.preventDefault();
         const email = document.getElementById('faultlineEmail').value;
+        const btn = document.querySelector('.join-submit');
+        const originalText = btn.textContent;
+        btn.textContent = 'Joining...';
+        btn.disabled = true;
 
-        // Submit to Google Apps Script (same as main site)
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz7RG2Q61m4UiDZYEpW_Iiz0ZsHLH_SgQOifJ9JOGf7lMrd4rWp8pv_cGGYgSNBiItE/exec';
+        try {
+            await fetch('https://script.google.com/macros/s/AKfycbz7RG2Q61m4UiDZYEpW_Iiz0ZsHLH_SgQOifJ9JOGf7lMrd4rWp8pv_cGGYgSNBiItE/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: 'Fault Line Signup',
+                    email: email,
+                    source: 'Its Your Fault Page - justinshenkarow.com'
+                })
+            });
 
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                'email': email,
-                'name': 'Fault Line Signup',
-                'source': 'its-your-fault-page'
-            })
-        });
+            // Update UI on success
+            document.querySelector('.join-form').innerHTML = '<p style="color: var(--gold); font-size: 1.2rem; font-weight: 600;">You\'re in! Welcome to The Fault Line.</p>';
+            closeStickyBar();
 
-        // Update UI
-        document.querySelector('.join-form').innerHTML = '<p style="color: var(--gold); font-size: 1.2rem; font-weight: 600;">You\'re in! Welcome to The Fault Line.</p>';
-        closeStickyBar();
-
-        // Increment counter display
-        const count = document.getElementById('fanCount');
-        count.textContent = (parseInt(count.textContent.replace(',', '')) + 1).toLocaleString();
+            // Increment counter display
+            const count = document.getElementById('fanCount');
+            count.textContent = (parseInt(count.textContent.replace(',', '')) + 1).toLocaleString();
+        } catch (err) {
+            btn.textContent = 'Error - Try Again';
+            setTimeout(() => { btn.textContent = originalText; btn.disabled = false; }, 3000);
+        }
     }
 
     function submitStickyForm(e) {
