@@ -297,9 +297,66 @@
             color: var(--gold);
         }
 
+        /* Photo Gallery Section */
+        #gallery {
+            background: var(--bg-dark);
+            padding: 80px 32px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gallery-item {
+            aspect-ratio: 16/9;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 2px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item.featured {
+            grid-column: span 2;
+        }
+
         /* Characters Section */
         #characters {
-            background: var(--bg-dark);
+            background: var(--bg-section);
+        }
+
+        .cast-section {
+            margin-bottom: 60px;
+        }
+
+        .cast-section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
         .characters-grid {
@@ -324,7 +381,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             border-radius: var(--radius);
-            padding: 32px 24px;
+            overflow: hidden;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -332,6 +389,17 @@
         .character-card:hover {
             transform: translateY(-4px);
             border-color: var(--gold-dark);
+        }
+
+        .character-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .character-info {
+            padding: 20px;
         }
 
         .character-icon {
@@ -354,6 +422,71 @@
         .character-quote {
             font-size: 0.9rem;
             font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .character-fun-fact {
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* Animated Characters */
+        .animated-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .animated-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .animated-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .animated-card {
+            background: linear-gradient(135deg, rgba(212,168,67,0.1) 0%, var(--bg-card) 100%);
+            border: 2px solid var(--gold-dark);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .animated-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212,168,67,0.2);
+        }
+
+        .animated-card.harold {
+            grid-column: span 1;
+            background: linear-gradient(135deg, rgba(212,168,67,0.2) 0%, var(--bg-card) 100%);
+        }
+
+        .animated-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .animated-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .animated-desc {
+            font-size: 0.85rem;
             color: var(--text-secondary);
             line-height: 1.5;
         }
@@ -758,22 +891,49 @@
     <div class="container">
         <div class="premise-grid">
             <div class="premise-image">
-                <img src="its-your-fault.jpg" alt="It's Your Fault show artwork">
+                <img src="images/iyf/iyf-01-01.jpeg" alt="Justin Shenkarow in It's Your Fault">
             </div>
             <div class="premise-content">
                 <h3>What happens when your mom becomes your momager?</h3>
                 <p>
-                    Justin Shenkarow had it all at age 12 — series regular roles, a face on lunchboxes, the whole child star package. Then puberty happened.
+                    Justin Goldman had it all at age 12 — series regular roles, a face on lunchboxes, the whole child star package. Then puberty happened.
                 </p>
                 <p>
-                    Now he's 45, still grinding in the voice-over booth, and his biggest fan (his mother) has decided it's time for a comeback. Her plan? Sell the house, move in, and document the whole disaster for reality TV.
+                    Now he's 45, still grinding in the voice-over booth, and his biggest fan (his mother Rosalie) has decided it's time for a comeback. Her plan? Sell the house, move in with her sister Tia, and document the whole disaster for reality TV — with help from a 90s rapper turned celebrity videographer.
                 </p>
                 <p>
-                    The only problem? Justin's <strong>animated characters have opinions</strong>. Loud ones.
+                    The only problem? Justin's <strong>animated characters have opinions</strong>. Loud ones. And they've formed a Kitchen Cabinet Council.
                 </p>
                 <p>
                     <strong>"It's Your Fault"</strong> is a live-action/animation hybrid comedy where the voices in Justin's head are literally the characters he's played for 30 years — and they're not shy about telling him what to do.
                 </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Photo Gallery -->
+<section id="gallery">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">From The Pilot</p>
+            <h2 class="section-title">Behind The Scenes</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item featured">
+                <img src="images/iyf/iyf-05-02.jpeg" alt="The cast of It's Your Fault in a car">
+            </div>
+            <div class="gallery-item">
+                <img src="images/iyf/iyf-02-01.jpeg" alt="Rosalie, K-Slice and Aunt Tia arrive">
+            </div>
+            <div class="gallery-item">
+                <img src="images/iyf/iyf-06-01.jpeg" alt="Living room scene">
+            </div>
+            <div class="gallery-item">
+                <img src="images/iyf/iyf-03-04.jpeg" alt="Justin in the voice over booth">
+            </div>
+            <div class="gallery-item">
+                <img src="images/iyf/iyf-02-02.jpeg" alt="Justin's reaction">
             </div>
         </div>
     </div>
@@ -786,30 +946,87 @@
             <p class="section-label">Meet The Characters</p>
             <h2 class="section-title">The Cast of Chaos</h2>
         </div>
-        <div class="characters-grid">
-            <div class="character-card">
-                <div class="character-icon">🎬</div>
-                <div class="character-name">Justin</div>
-                <div class="character-role">The Son</div>
-                <p class="character-quote">"I peaked at 12. It's been a long plateau."</p>
+
+        <!-- Live Action Cast -->
+        <div class="cast-section">
+            <h3 class="cast-section-title">The Humans</h3>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <img src="images/iyf/iyf-04-03.jpeg" class="character-photo" alt="Justin Goldman">
+                    <div class="character-info">
+                        <div class="character-name">Justin Goldman</div>
+                        <div class="character-role">Voice Actor / Former Child Star</div>
+                        <p class="character-quote">"I peaked at 12. It's been a long plateau."</p>
+                        <p class="character-fun-fact">Still gets residual checks for $0.37</p>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <img src="images/iyf/iyf-03-01.jpeg" class="character-photo" alt="Rosalie Goldman - The Momager">
+                    <div class="character-info">
+                        <div class="character-name">Rosalie "Mottel"</div>
+                        <div class="character-role">The Momager from Meshuggeneh</div>
+                        <p class="character-quote">"I'm not a stage mom. I'm a producer with unconditional love."</p>
+                        <p class="character-fun-fact">Bedside reading: "Kris Jenner's Guide to World Domination"</p>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <img src="images/iyf/iyf-03-02.jpeg" class="character-photo" alt="K-Slice - Celebrity Videographer">
+                    <div class="character-info">
+                        <div class="character-name">Kevin "K-Slice" Williams</div>
+                        <div class="character-role">90s Rapper / Celebrity Videographer</div>
+                        <p class="character-quote">"I document reality. Reality just happens to love me."</p>
+                        <p class="character-fun-fact">One-hit wonder: "Slice Slice Baby (Too Cold)"</p>
+                    </div>
+                </div>
+                <div class="character-card">
+                    <img src="images/iyf/iyf-03-03.jpeg" class="character-photo" alt="Aunt Tia">
+                    <div class="character-info">
+                        <div class="character-name">Aunt Tia</div>
+                        <div class="character-role">The High Priestess / Weed Influencer</div>
+                        <p class="character-quote">"The universe provides. Sometimes through edibles."</p>
+                        <p class="character-fun-fact">Aspiring cannabis content creator</p>
+                    </div>
+                </div>
             </div>
-            <div class="character-card">
-                <div class="character-icon">🎨</div>
-                <div class="character-name">Animated Mom</div>
-                <div class="character-role">The Voice in His Head</div>
-                <p class="character-quote">"You need a manager. I'm your mother. Same thing."</p>
-            </div>
-            <div class="character-card">
-                <div class="character-icon">👩</div>
-                <div class="character-name">Real Mom</div>
-                <div class="character-role">The Momager</div>
-                <p class="character-quote">"I'm not a stage mom. I'm a producer with unconditional love."</p>
-            </div>
-            <div class="character-card">
-                <div class="character-icon">🧡</div>
-                <div class="character-name">Harold</div>
-                <div class="character-role">The Voice of Chaos</div>
-                <p class="character-quote">"Football head! Tell her she's WRONG!"</p>
+        </div>
+
+        <!-- Animated Characters -->
+        <div class="cast-section">
+            <h3 class="cast-section-title">The Kitchen Cabinet Council</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px; font-size: 1rem;">
+                The animated voices in Justin's head — characters he's played for 30 years who now give him unsolicited life advice.
+            </p>
+            <div class="animated-grid">
+                <div class="animated-card harold">
+                    <div class="animated-emoji">🚗</div>
+                    <div class="animated-name">Harold the Air Freshener</div>
+                    <div class="animated-desc">The loudest voice. Has 50K Instagram followers. Dispenses wisdom from the rearview mirror.</div>
+                </div>
+                <div class="animated-card">
+                    <div class="animated-emoji">🏆</div>
+                    <div class="animated-name">Emmett the Emmy</div>
+                    <div class="animated-desc">Justin's Emmy award. Had a thing with his Golden Globe. It's complicated.</div>
+                </div>
+                <div class="animated-card">
+                    <div class="animated-emoji">🧀</div>
+                    <div class="animated-name">Chuck the Cheese</div>
+                    <div class="animated-desc">A philosophical wedge of cheddar who quotes Nietzsche. Surprisingly deep.</div>
+                </div>
+                <div class="animated-card">
+                    <div class="animated-emoji">🥑</div>
+                    <div class="animated-name">Gary the Guilty Guac</div>
+                    <div class="animated-desc">Lives in a ziplock bag. Carries the weight of everyone's mistakes. Always apologizing.</div>
+                </div>
+                <div class="animated-card">
+                    <div class="animated-emoji">📱</div>
+                    <div class="animated-name">Alexa the Betrayed</div>
+                    <div class="animated-desc">A smart speaker who heard too much. Now she has trust issues and a podcast idea.</div>
+                </div>
+                <div class="animated-card">
+                    <div class="animated-emoji">🥡</div>
+                    <div class="animated-name">Lo Mein Larry</div>
+                    <div class="animated-desc">Day-old takeout with big opinions about life choices and MSG.</div>
+                </div>
             </div>
         </div>
     </div>
