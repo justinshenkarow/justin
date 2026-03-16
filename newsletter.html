@@ -178,20 +178,20 @@
       line-height: 1.5;
     }
 
-    /* Signup Form */
-    .signup-box {
+    /* Kit Form Container */
+    .kit-form-container {
       background: repeating-linear-gradient(45deg, #ff00ff 0px, #ff00ff 10px, #00ffff 10px, #00ffff 20px);
       padding: 5px;
       margin-bottom: 30px;
     }
 
-    .signup-inner {
+    .kit-form-inner {
       background: #000;
       padding: 40px 30px;
       text-align: center;
     }
 
-    .signup-inner h3 {
+    .kit-form-inner h3 {
       font-size: 2.5rem;
       color: #00ff00;
       font-weight: 900;
@@ -199,72 +199,9 @@
       text-shadow: 3px 3px 0 #ff00ff;
     }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 18px;
-      font-size: 1.2rem;
-      font-family: inherit;
-      font-weight: 700;
-      background: #fff;
-      border: 5px solid #00ff00;
-      border-radius: 10px;
-      color: #000;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: #ffff00;
-      box-shadow: 0 0 25px #ffff00;
-    }
-
-    .submit-btn {
-      width: 100%;
-      padding: 22px;
-      font-size: 1.5rem;
-      font-family: inherit;
-      font-weight: 900;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-      color: #fff;
-      border: 5px solid #000;
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
-      transition: all 0.2s ease;
-      text-shadow: 2px 2px 0 #000;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
-    }
-
-    .submit-btn:active {
-      transform: translate(4px, 4px);
-      box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
-    }
-
-    /* Success Message */
-    .success-message {
-      display: none;
-      background: #00ff00;
-      color: #000;
-      padding: 25px;
-      border: 5px solid #000;
-      border-radius: 15px;
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 900;
-      margin-top: 20px;
-    }
-
-    .success-message.show {
-      display: block;
-      animation: pulse 1s ease-in-out;
+    /* Override Kit's default styles to match our theme */
+    .kit-form-inner form {
+      max-width: 100% !important;
     }
 
     /* Social Proof */
@@ -394,36 +331,14 @@
         </div>
       </div>
 
-      <!-- Signup Form -->
-      <div class="signup-box">
-        <div class="signup-inner">
+      <!-- Kit Form -->
+      <div class="kit-form-container">
+        <div class="kit-form-inner">
           <h3>Join The Vault! 👊</h3>
-          <form id="signupForm" onsubmit="handleSubmit(event)">
-            <div class="form-group">
-              <input 
-                type="text" 
-                class="form-input" 
-                id="nameInput" 
-                placeholder="Your Name" 
-                required
-              >
-            </div>
-            <div class="form-group">
-              <input 
-                type="email" 
-                class="form-input" 
-                id="emailInput" 
-                placeholder="your@email.com" 
-                required
-              >
-            </div>
-            <button type="submit" class="submit-btn">
-              Subscribe Now! 🔥
-            </button>
-          </form>
-          <div class="success-message" id="successMessage">
-            ✅ YOU'RE IN! Check your email! ✅
-          </div>
+          
+          <!-- Kit.com Embed -->
+          <script async data-uid="5a704c0c40" src="https://justin-shenkarow.kit.com/5a704c0c40/index.js"></script>
+          
         </div>
       </div>
 
@@ -441,47 +356,6 @@
       <p><a href="https://justinshenkarow.com" target="_blank">justinshenkarow.com</a></p>
     </footer>
   </div>
-
-  <script>
-    async function handleSubmit(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('nameInput').value;
-      const email = document.getElementById('emailInput').value;
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      
-      // Disable button
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Subscribing...';
-      
-      try {
-        // Build URL with parameters (GET request to avoid CORS)
-        const url = 'https://script.google.com/macros/s/AKfycbx1dVfMP9RG83EDSl2g17VLNhkoZJSacp2nDuPz_zxotBTb6K4-iPlJLIWmuqsF3pdp/exec' +
-          '?email=' + encodeURIComponent(email) +
-          '&name=' + encodeURIComponent(name) +
-          '&source=' + encodeURIComponent('Newsletter Landing Page');
-        
-        // Use fetch with GET
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        if (data.result === 'success') {
-          document.getElementById('signupForm').style.display = 'none';
-          document.getElementById('successMessage').classList.add('show');
-        } else {
-          alert('Already subscribed or error occurred. Please try again!');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Subscribe Now! 🔥';
-        }
-        
-      } catch (error) {
-        console.error('Subscription error:', error);
-        alert('Oops! Something went wrong. Please try again.');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Subscribe Now! 🔥';
-      }
-    }
-  </script>
 
 </body>
 </html>
